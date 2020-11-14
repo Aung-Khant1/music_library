@@ -45,11 +45,12 @@ class LoginController extends Controller
         //check user role
         switch ($roles[0]) {
             case 'admin':
-                return 'item';
+                return 'singer';
                 break;
             
             default:
                 return '/';
         }
+    }
 }
 }
