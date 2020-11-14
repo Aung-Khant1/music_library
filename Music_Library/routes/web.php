@@ -13,16 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+    //return view('welcome');
+//});
 
 
 //wanna route start
   Route::resource('singer', 'SingerController'); // 7 (get, post, put, delete)
   Route::resource('song', 'SongController'); // 7 
   //Route::resource('subcategory', 'SubcategoryController'); // 7 
-  //Route::resource('item', 'ItemController'); // 7 
+  //Route::resource('item', 'ItemController'); // 7
+
+
+ Route::get('/', 'FrontendController@home')->name('mainpage');
+
+
+  
 //wanna route end
 
 Auth::routes();
