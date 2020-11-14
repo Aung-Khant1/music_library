@@ -51,4 +51,5 @@ class LoginController extends Controller
             default:
                 return '/';
         }
+    }
 }
