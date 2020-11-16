@@ -1,7 +1,6 @@
 @extends('frontendtemplate')
 @section('content')
 
-
     <!-- ##### Hero Area Start ##### -->
     <section class="hero-area">
         <div class="hero-slides owl-carousel">
@@ -453,7 +452,7 @@
                         <!-- Single Artist -->
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
                             <div class="thumbnail">
-                                <img src="{{ $singer->photo }}" class="img-fluid" alt="">
+                                <img src="{{ $singer->photo }}" class="img-fluid" alt="" style="height: 75px;">
                             </div>
                             <div class="content-">
                                 <a href="{{ route('songsbysinger', $singer->id) }}"><p>{{ $singer->name }}</p></a>
@@ -471,7 +470,7 @@
                             <p>See what’s new</p>
                             <h2>New Hits</h2>
                         </div>
-                        @foreach($songs as $song)
+                        @foreach($mysinger->songs as $song)
                         <!-- Single Top Item -->
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
                             <div class="first-part d-flex align-items-center">

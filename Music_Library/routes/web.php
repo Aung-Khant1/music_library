@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 
  Route::get('/', 'FrontendController@home')->name('mainpage');
+ Route::get('songsbysinger/{id}', 'FrontendController@songsbysinger')->name('songsbysinger');
 
 
   
