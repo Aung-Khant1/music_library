@@ -41,12 +41,12 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "name"=>"required|min:5",
-            "song_url"=>"required|mimes:mp3",
-            "writer_name"=>"required|min:5",
+        // $request->validate([
+        //     "name"=>"required|min:5",
+        //     "song_url"=>"required|mimes:mp3",
+        //     "writer_name"=>"required|min:5",
             
-        ]);
+        // ]);
 
 
         if($request->file()) 
@@ -59,7 +59,7 @@ class SongController extends Controller
 
             $path = '/storage/'.$filePath;
         }
-
+        
         $song = new Song;
         $song->name=$request->name;
         $song->song_url=$path;

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Song;
+use App\Singer;
 
 class FrontendController extends Controller
 {
@@ -10,4 +13,112 @@ class FrontendController extends Controller
     {
     	return view('frontend.mainpage');
     }
+    public function song($value='')
+    {
+    	$songs = Song::all();
+    	return view('frontend.songs', compact('songs'));
+    }
+
+    public function isongs(Request $request)
+    {
+    	$intersongs = $request->songtype;//song type(inter or local)
+
+    	$type_of_singer = Singer::where('type',$intersongs)->get();
+    	
+    	$v = [];
+    	foreach ($type_of_singer as $key => $value) {
+    		$a = Song::where('singer_id',$value->id)->with('singer')->get();
+    		
+    			array_push($v, $a);
+    		
+    	}
+
+    	return $v;
+    }
+
+
+
+
+
+
+    public function lsongs(Request $request)
+    {
+    	$local = $request->songtype;//song type(inter or local)
+
+    	$type_of_singer = Singer::where('type',$local)->get();
+    	
+    	$v = [];
+    	foreach ($type_of_singer as $key => $value) {
+    		$a = Song::where('singer_id',$value->id)->with('singer')->get();
+    		
+    			array_push($v, $a);
+    		
+    	}
+
+    	return $v;
+    }
+
+
+    public function ksongs(Request $request)
+    {
+    	$ksong = $request->songtype;//song type(inter or local)
+
+    	$type_of_singer = Singer::where('type',$ksong)->get();
+    	
+    	$v = [];
+    	foreach ($type_of_singer as $key => $value) {
+    		$a = Song::where('singer_id',$value->id)->with('singer')->get();
+    		
+    			array_push($v, $a);
+    		
+    	}
+
+    	return $v;
+    }
+
+
+    public function msongs(Request $request)
+    {
+    	$msong = $request->songtype;//song type(inter or local)
+
+    	$type_of_singer = Singer::where('gender',$msong)->get();
+    	
+    	$v = [];
+    	foreach ($type_of_singer as $key => $value) {
+    		$a = Song::where('singer_id',$value->id)->with('singer')->get();
+    		
+    			array_push($v, $a);
+    		
+    	}
+
+    	return $v;
+    }
+
+    public function fsongs(Request $request)
+    {
+    	$msong = $request->songtype;//song type(inter or local)
+
+    	$type_of_singer = Singer::where('gender',$msong)->get();
+    	
+    	$v = [];
+    	foreach ($type_of_singer as $key => $value) {
+    		$a = Song::where('singer_id',$value->id)->with('singer')->get();
+    		
+    			array_push($v, $a);
+    		
+    	}
+
+    	return $v;
+    }
+
+
+
+
+    public function asongs(Request $request)
+    {
+    	$songs = Song::with('singer')->get();
+    	return $songs;
+    }
+
+    
 }
