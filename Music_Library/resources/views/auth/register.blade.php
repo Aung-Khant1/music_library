@@ -6,7 +6,7 @@
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({{asset('frontend_asset/img/bg-img/breadcumb3.jpg')}});">
         <div class="bradcumbContent">
             <p>See what’s new</p>
-            <h2>Login</h2>
+            <h2>Register</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -17,7 +17,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
                     <div class="login-content">
-                        <h3>Welcome Back</h3>
+                        <h3>Welcome to Music Library</h3>
                         <!-- Login Form -->
                         <div class="login-form">
 

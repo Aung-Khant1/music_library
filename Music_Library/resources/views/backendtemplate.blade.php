@@ -97,9 +97,11 @@
         </div>
       </div>
       <ul class="app-menu">
-        <li><a class="app-menu__item" href="dashboard.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
         
-        <li><a class="app-menu__item" href="{{route('singer.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Singer</span></a></li>
+
+         <li><a class="app-menu__item {{ Request::is('singer*') ? 'active' : '' }}" href="{{route('singer.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Singers</span></a></li>
+
+          <li><a class="app-menu__item {{ Request::is('song*') ? 'active' : '' }}" href="{{route('song.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Song</span></a></li>
         
       </ul>
     </aside>
@@ -114,11 +116,11 @@
     <script src="{{asset('backend_asset/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('backend_asset/js/popper.min.js')}}"></script>
     <script src="{{asset('backend_asset/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('backend_asset/js/main.j')}}s"></script>
+    <script src="{{asset('backend_asset/js/main.js')}}"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="{{asset('backend_asset/js/plugins/pace.min.js')}}"></script>
     
-    <link rel="stylesheet" href="{{asset('backend_asset/customCSS/style.css')}}">
+   
     <!-- Page specific javascripts-->
     <!-- Google analytics script-->
     <script type="text/javascript">
