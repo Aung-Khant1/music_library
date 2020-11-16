@@ -26,11 +26,13 @@ use Illuminate\Support\Facades\Route;
 
 
  Route::get('/', 'FrontendController@home')->name('mainpage');
- Route::get('songsbysinger/{id}', 'FrontendController@songsbysinger')->name('songsbysinger');
 
 
   
 //wanna route end
+
+Route::get('songsbysinger/{id}', 'FrontendController@songsbysinger')->name('songsbysinger');
+Route::resource('requestsong', 'RequestSongController');
 
 Auth::routes();
 
