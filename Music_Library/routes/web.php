@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
   //Route::resource('item', 'ItemController'); // 7
 
 
-<<<<<<< HEAD
+
 Route::get('/', 'FrontendController@home')->name('mainpage');
 Route::get('/songs', 'FrontendController@song')->name('songs');
 Route::post('/isongs', 'FrontendController@isongs')->name('isongs');
@@ -36,10 +36,10 @@ Route::post('/fsongs', 'FrontendController@fsongs')->name('fsongs');
 Route::post('/asongs', 'FrontendController@asongs')->name('asongs');
 // Route::resource('showsongs', 'SongsController');
  
-=======
- Route::get('/', 'FrontendController@home')->name('mainpage');
+
+ 
  Route::get('songsbysinger/{id}', 'FrontendController@songsbysinger')->name('songsbysinger');
->>>>>>> 653880fa9e5468a1d0f4920af94228e96c6e0cbf
+
 
 
   
