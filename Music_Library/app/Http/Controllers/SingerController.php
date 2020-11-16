@@ -37,9 +37,7 @@ class SingerController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-            "name"=>"required|min:5",
-            "gender"=>"required|min:3",
-            "type"=>"required|min:3",
+            "name"=>"required",
             "photo"=>"required|mimes:jpeg,bmp,png",
         ]);
 
@@ -99,7 +97,43 @@ class SingerController extends Controller
      */
     public function update(Request $request, Singer $singer)
     {
-        //
+
+        $request->validate([
+            "name"=>"required",
+            "newphoto"=>"sometimes|required|mimes:jpeg,bmp,png",
+            "oldphoto"=>"required"
+            
+        ]);
+
+
+
+        if($request->file()) 
+        {
+            // 624872374523_a.jpg
+            //delete old photo
+            $fileName = time().'_'.$request->newphoto->getClientOriginalName();
+
+            // brandimg/624872374523_a.jpg
+            $filePath = $request->file('newphoto')->storeAs('singerimg', $fileName, 'public');
+
+            $path = '/storage/'.$filePath;
+        }else
+        {
+           $path = $request->oldphoto;
+        }
+
+
+
+        $singer->name=$request->name;
+        $singer->gender=$request->gender;
+        $singer->type=$request->type;
+        $singer->photo=$path;
+        $singer->save();
+
+         return redirect()->route('singer.index');
+       
+
+
     }
 
     /**

@@ -20,37 +20,49 @@
           	<form method="post" action="{{route('singer.store')}}" enctype="multipart/form-data">
               @csrf
 
+
+
             <div class="form-group">
-              <label>Name:</label>
-              <input type="text" name="name" class="form-control @error('name') is-invalid @enderror">
+                <label for="name">{{ __('Name') }}</label>
+                <input id="name" type="text" class="form-control" @error('name') is-invalid @enderror  name   ="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="     Enter Name"  >
+                                     
                 @error('name')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{  $message }}</strong>
-                  </span>
+                    <span class="invalid-feedback" role="alert">
+                       <strong>{{ $message }}</strong>
+                    </span>
                 @enderror
             </div>
 
 
            <div class="form-group">
               <label>Gender:</label>
-              <input type="text" name="gender" class="form-control @error('gender') is-invalid @enderror">
-                @error('gender')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{  $message }}</strong>
-                  </span>
-                @enderror
+                <div class="col-sm-10">
+                     <select class="form-control" name="gender">
+                        
+                          <option value="Male"> Male </option>
+                          <option value="Female"> Female</option>
+                       
+                      </select>
+                  </div>
+
             </div>
 
 
 
             <div class="form-group">
               <label>Type:</label>
-              <input type="text" name="type" class="form-control @error('type') is-invalid @enderror">
-                @error('type')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{  $message }}</strong>
-                  </span>
-                @enderror
+
+
+              <div class="col-sm-10">
+                     <select class="form-control" name="type">
+                        
+                          <option value="Local"> Local </option>
+                          <option value="Internation"> Internation</option>
+                       
+                      </select>
+                  </div>
+
+
             </div>
 
 

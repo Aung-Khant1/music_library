@@ -17,15 +17,15 @@
             
 
           	<h2>Singer Edit</h2>
-          	 <form method="post" action="{{route('singer.update',$singer->id)}}" enctype="multipart/form-data">
-              @csrf
-            @method('PUT')
+          	   <form method="post" action="{{route('singer.update',$singer->id)}}" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
 
 
 
             <div class="form-gruop">
-              <label>Name:</label>
-              <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{$singer->name}}">
+                <label>Name:</label>
+                <input  type="text" name="name" class="form-control @error('name') is-invalid @enderror"  value="{{$singer->name}}">
                 @error('name')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{  $message }}</strong>
@@ -34,26 +34,64 @@
             </div>
 
 
-             <div class="form-gruop">
+
+
+             
+
+
+
+
+
+
+
+
+
+            <div class="form-group">
               <label>Gender:</label>
-              <input type="text" name="gender" class="form-control @error('gender') is-invalid @enderror" value="{{$singer->gender}}">
-                @error('gender')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{  $message }}</strong>
-                  </span>
-                @enderror
+                <div class="col-sm-10">
+                     <select class="form-control" name="gender">
+                        @if($singer->gender == "Male")
+                          <option value="Male" selected=""> Male </option>
+                          <option value="Female"> Female</option>
+                        @else
+                          <option value="Male" > Male </option>
+                          <option value="Female" selected=""> Female</option>
+                          @endif
+                      </select>
+                  </div>
+
             </div>
 
 
-            <div class="form-gruop">
+            <div class="form-group">
               <label>Type:</label>
-              <input type="text" name="type" class="form-control @error('type') is-invalid @enderror" value="{{$singer->type}}">
-                @error('type')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{  $message }}</strong>
-                  </span>
-                @enderror
+                <div class="col-sm-10">
+                     <select class="form-control" name="type">
+                        @if($singer->type == "Local")
+                          <option value="Lcal" selected=""> Local </option>
+                          <option value="Internation"> Internation</option>
+                        @else
+                          <option value="Local" > Local </option>
+                          <option value="Internation" selected=""> Internation</option>
+                          @endif
+                      </select>
+                  </div>
+
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
 
 
 
@@ -79,8 +117,8 @@
                         <input type="hidden" name="oldphoto" value="{{$singer->photo}}">
                     </div>
 
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"> <input type="file" name="photo" class="form-control-file @error('photo') is-invalid @enderror">
-                     @error('photo')
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"> <input type="file" name="newphoto" class="form-control-file @error('newphoto') is-invalid @enderror">
+                     @error('newphoto')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{  $message }}</strong>
                         </span>
@@ -93,8 +131,8 @@
             </div>
 
 
-            <div class="form-gruop">
-              <input type="submit" name="btnsubmit" value="Update">
+            <div class="form-group">
+              <input type="submit" name="btnsubmit" value="Update" class="btn btn-primary">
             </div>
 
             </form>          	
