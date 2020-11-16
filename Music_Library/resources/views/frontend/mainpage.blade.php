@@ -419,28 +419,48 @@
     <section class="miscellaneous-area section-padding-100-0">
         <div class="container">
             <div class="row">
-                <!-- ***** Weeks Top ***** -->
-                <div class="col-12 col-lg-4">
-                    <div class="weeks-top-area mb-100">
+
+
+
+               
+                <div class="col-12 col-lg-4 ">
+                    <div class="new-hits-area mb-100">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
                             <p>See what’s new</p>
-                            <h2>This week’s top</h2>
+                            <h2>New Hits</h2>
                         </div>
+                        
                         @foreach($songs as $song)
                         <!-- Single Top Item -->
-                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
-                            <div class="thumbnail">
-                                <img src="{{asset('frontend_asset/img/bg-img/wt1.jpg')}}" alt="">
+                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp SongOfOneSinger" data-wow-delay="100ms">
+
+                            <div class="first-part d-flex align-items-center">
+                                <div class="thumbnail">
+                                    <img src="{{asset($song->singer->photo)}}" alt="">
+                                </div>
+                                <div class="content-">
+                                    <h6>{{ $song->name }}</h6>
+                                    <p>{{ $song->singer->name }}</p>
+                                </div>
                             </div>
-                            <div class="content-">
-                                <h6>{{ $song->name }}</h6>
-                                <p>{{ $song->singer->name }}</p>
-                            </div>
+                            <audio preload="auto" controls>
+                                <source src="{{asset($song->song_url)}}">
+                            </audio>
                         </div>
                         @endforeach
+                   
+
+                    
+
 
                     </div>
                 </div>
+               
+
+
+                
+
+
 
                 <!-- ***** Popular Artists ***** -->
                 <div class="col-12 col-lg-4">
@@ -449,34 +469,52 @@
                             <p>See what’s new</p>
                             <h2>Popular Artist</h2>
                         </div>
-                        @foreach($singers as $singer)
-                        <!-- Single Artist -->
-                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
-                            <div class="thumbnail">
-                                <img src="{{ $singer->photo }}" class="img-fluid" alt="">
+
+
+                        @php $i=1; @endphp
+                            @for($i;$i<4;$i++)
+                            @php  
+                                $singer=$singers[$i];
+                            @endphp
+                    
+                            <!-- Single Artist -->
+                            <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
+                                <div class="thumbnail">
+                                    <img src="{{ $singer->photo }}" class="img-fluid " alt="{{$singer->id}}" style="height: 60px;" value="{{$singer->id}}" >
+                                </div>
+                                <div class="content-">
+                                    <p class="SongOfSinger"
+                                      value="{{$singer->id}}" >
+                                     {{ $singer->name }}</p>
+                                    
+                                </div>
                             </div>
-                            <div class="content-">
-                                <a href="{{ route('songsbysinger', $singer->id) }}"><p>{{ $singer->name }}</p></a>
-                            </div>
-                        </div>
-                        @endforeach
+
+                            @endfor
+                      
+               
+                       
 
                     </div>
                 </div>
 
                 <!-- ***** New Hits Songs ***** -->
-                <div class="col-12 col-lg-4">
+             
+
+                <div class="col-12 col-lg-4 songSH">
                     <div class="new-hits-area mb-100">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
                             <p>See what’s new</p>
                             <h2>New Hits</h2>
                         </div>
+                        
                         @foreach($songs as $song)
                         <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
+                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp SongOfOneSinger" data-wow-delay="100ms">
+
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="{{asset('frontend_asset/img/bg-img/wt7.jpg')}}" alt="">
+                                    <img src="{{asset($song->singer->photo)}}" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>{{ $song->name }}</h6>
@@ -484,13 +522,29 @@
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="{{asset('frontend_asset/audio/dummy-audio.mp3')}}">
+                                <source src="{{asset($song->song_url)}}">
                             </audio>
                         </div>
                         @endforeach
+                   
+
+                    
+
 
                     </div>
                 </div>
+            
+
+                
+                    <div class="col-12 col-lg-4 " id="songShow">
+
+                </div>
+
+                                    <!-- ***** Weeks Top ***** -->
+
+
+
+
 
             </div>
         </div>
@@ -548,3 +602,90 @@
     <!-- ##### Contact Area End ##### -->
 
 @endsection
+
+@section('script')
+
+<script type="text/javascript">
+    
+    $(document).ready(function(){
+        $.ajaxSetup({
+                    headers: 
+                    { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+                 });
+
+        
+
+
+        $('.SongOfSinger').click(function(){
+             $(".songSH").hide();
+
+            let SingerID =$(this).attr("value");
+            //alert(SingerID);
+            $.post("{{route('filterSongOfSinger')}}",{sid:SingerID},function(response){
+                console.log(response);
+
+                var i=response.length;
+               
+
+               // var songs = [];
+               var html="";
+               html+=`
+                    <div class="new-hits-area mb-100">
+                        <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
+                            <p>See what’s new</p>
+                            <h2>New Hits</h2>
+                        </div>`;
+                for(let row of response)
+                {
+                    console.log(row.name);
+                      html+=
+                    ` <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp SongOfOneSinger" data-wow-delay="100ms">
+
+                            <div class="first-part d-flex align-items-center">
+                                <div class="thumbnail">
+                                    <img src="frontend_asset/img/bg-img/wt1.jpg" alt="">
+                                </div>
+                                <div class="content-">
+                                    <h6> ${row.name} </h6>
+                                   
+                                </div>
+                            </div>
+                            <audio preload="auto" controls>
+                                <source src="${row.song_url}">
+                            </audio>
+                        </div>`
+                }
+                html+=`</div>`;
+
+                $('#songShow').html(html);
+
+            })
+
+        })
+
+
+       //$(document).ajaxComplete(function(){
+         // $(".SongOfSinger").load("demo_ajax_load.asp");
+   //<link rel="stylesheet" href="">
+ // });
+
+
+
+
+//
+
+    })
+
+
+</script>
+
+
+
+@endsection
+
+ <!-- Favicon -->
+    
+
+
+
+

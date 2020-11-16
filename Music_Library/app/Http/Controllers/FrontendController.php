@@ -28,4 +28,12 @@ class FrontendController extends Controller
         // dd($mysinger);
     	return view('frontend.mainpage', compact('latest_one_song', 'songs', 'singers', 'mysinger'));
     }
+
+    public function filterSongOfSinger(Request $request)
+    {
+        $sid=$request->sid;
+        $songs=Song::where('singer_id',$sid)->get();
+        //dd( $songs);
+        return $songs;
+    }
 }
