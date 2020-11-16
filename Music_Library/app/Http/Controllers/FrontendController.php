@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Song;
-use App\Singer;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
