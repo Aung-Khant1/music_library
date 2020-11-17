@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
+
+
 Route::get('/', 'FrontendController@home')->name('mainpage');
 Route::get('/songs', 'FrontendController@song')->name('songs');
 Route::post('/isongs', 'FrontendController@isongs')->name('isongs');
@@ -35,6 +37,7 @@ Route::post('/msongs', 'FrontendController@msongs')->name('msongs');
 Route::post('/fsongs', 'FrontendController@fsongs')->name('fsongs');
 Route::post('/asongs', 'FrontendController@asongs')->name('asongs');
 // Route::resource('showsongs', 'SongsController');
+
  
 
  
@@ -42,8 +45,11 @@ Route::post('/asongs', 'FrontendController@asongs')->name('asongs');
 
 
 
-  
+
+
+
 //wanna route end
+Route::resource('requestsong', 'RequestSongController');
 
 Auth::routes();
 

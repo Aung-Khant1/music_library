@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Song;
-use App\Singer;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Song;
+use App\Singer;
 
 
 class FrontendController extends Controller
@@ -21,12 +21,12 @@ class FrontendController extends Controller
     }
     public function songsbysinger($id)
     {
+        $mysinger = Singer::find($id);
         $latest_one_song = Song::orderby('id', 'desc')
                             ->take(1)
                             ->get();
         $songs = Song::all();
         $singers = Singer::all();
-        $mysinger = Singer::find($id);
         // dd($mysinger);
     	return view('frontend.mainpage', compact('latest_one_song', 'songs', 'singers', 'mysinger'));
     }
