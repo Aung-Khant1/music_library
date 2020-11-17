@@ -25,9 +25,6 @@ use Illuminate\Support\Facades\Route;
   //Route::resource('item', 'ItemController'); // 7
 
 
-
-
-
 Route::get('/', 'FrontendController@home')->name('mainpage');
 Route::get('/songs', 'FrontendController@song')->name('songs');
 Route::post('/isongs', 'FrontendController@isongs')->name('isongs');
@@ -40,16 +37,31 @@ Route::post('/asongs', 'FrontendController@asongs')->name('asongs');
 
  
 
- 
+ Route::get('/', 'FrontendController@home')->name('mainpage');
  Route::get('songsbysinger/{id}', 'FrontendController@songsbysinger')->name('songsbysinger');
 
 
+Route::get('songsbysinger/{id}', 'FrontendController@songsbysinger')->name('songsbysinger');
 
 
+Route::post('filterSongOfSinger','FrontendController@filterSongOfSinger')->name('filterSongOfSinger');
+  
+
+Route::get('contact','FrontendController@contact')->name('contact');
+
+Route::get('SongsByOneSingerOnePage/{id}','FrontendController@SongsByOneSingerOnePage')->name('SongsByOneSingerOnePage');
+///////////////////////////////
+
+
+Route::get('AllClassMusicOnePage/{type}','FrontendController@AllClassMusicOnePage')->name('AllClassMusicOnePage');
+
+
+///////////////////////////////////
 
 
 //wanna route end
-Route::resource('requestsong', 'RequestSongController');
+Route::resource('request_song', 'RequestSongController');
+Route::resource('comments', 'CommentController');
 
 Auth::routes();
 
