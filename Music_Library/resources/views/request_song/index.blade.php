@@ -15,7 +15,7 @@
         <div class="col-md-12">
           <div class="tile">
 
-          <h2 class="d-inline-block">Request Message List</h2>
+          <h2 class="d-inline-block">Request Message</h2>
           <table class="table mt-3 table-bordered dataTable">
           		<thead>
           			<tr>
@@ -37,7 +37,7 @@
                   <td>{{$row->request_date}}</td>
                   <td>{{$row->request_msg}}</td>
           				<td>
-                    <form method="post" action="{{route('requestsong.destroy', $row->id)}}" class="d-inline-block" onsubmit="return confirm('Are you sure want to delete?')">
+                    <form method="POST" action="{{route('request_song.destroy', $row->id)}}" class="d-inline-block" onsubmit="return confirm('Are you sure want to delete?')">
                       @csrf
                       @method('DELETE')
                       <input type="submit" name="btnsubmit" value="Delete" class="btn btn-danger">

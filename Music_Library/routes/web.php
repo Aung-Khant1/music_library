@@ -48,7 +48,7 @@ Route::post('filterSongOfSinger','FrontendController@filterSongOfSinger')->name(
   
 
 //wanna route end
-Route::resource('requestsong', 'RequestSongController');
+Route::resource('request_song', 'RequestSongController');
 
 Auth::routes();
 
