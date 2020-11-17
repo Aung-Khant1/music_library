@@ -125,6 +125,27 @@
         
     </div>
 
+
+
+
+
+
+
+     
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- ##### Song Area Start ##### -->
     <div class="one-music-songs-area mb-70">
         <div class="container">
@@ -145,11 +166,19 @@
                         
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>{{$i}}. {{$song->name}} </p>
+                                <p >{{$i}}. {{$song->name}} 
+                                 <spam class="HIcon">  <i class="fas fa-heart fa-1x ml-3" style="color: blue"
+
+                                    id="{{$song->id}}"></i></spam>
+                                 </p>
+                                 
+                                
+                                
                             </div>
                             <audio preload="auto" controls>
                                 <source src="{{asset($song->song_url)}}">
                             </audio>
+
                         </div>
                     </div>
                 </div>
@@ -158,6 +187,7 @@
                     $i++;
                 @endphp
                 @endforeach
+                 
 
             </div>
         </div>
@@ -289,7 +319,12 @@
                                 
                                 <div class="song-play-area">
                                     <div class="song-name">
-                                        <p>${i++}. ${lsong.name} </p>
+                                        <p>${i++}. ${lsong.name} 
+                                         <spam class="HIcon">  <i class="fas fa-heart fa-1x ml-3" style="color: blue"
+
+                                    id="${lsong.id}"></i></spam>
+
+                                        </p>
                                     </div>
                                     <audio preload="auto" controls>
                                         <source src="${lsong.song_url}">
@@ -468,7 +503,28 @@
             $('.filter_active > a').removeClass('active_filter');
             $(this).addClass('active_filter');
         });
+
+
+
+
         
+            $(".HIcon>i").click(   
+                    function(){
+                        
+                       
+                       
+                                   
+                                        $(this).css({"color": "red"});
+                                        let SongID =$(this).attr("id");
+                                       
+                                        alert(SongID);
+                                        
+                                        
+                                    
+                        
+
+            
+                            });
 
     });
 

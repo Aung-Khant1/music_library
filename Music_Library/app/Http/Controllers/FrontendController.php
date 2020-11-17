@@ -146,6 +146,34 @@ class FrontendController extends Controller
     	return $songs;
     }
 
+    //wanna mainpage change
+
+    public function SongsByOneSingerOnePage($id)
+    {
+        $Onesinger = Singer::find($id);
+        $Allsong=Song::all();
+        $Allsinger=Singer::all();
+        
+        return view('frontend.SongsByOneSingerOnePage',compact('Onesinger','Allsong','Allsinger'));
+    }
+
+
+////////////////////////////////////
+     public function AllClassMusicOnePage($type)
+    {
+        $ClassSong = Singer::where('type', $type);
+        $AllSinger =Singer::all();
+       
+        
+        return view('frontend.AllClassMusicOnePage',compact('ClassSong','AllSinger'));
+    }
+    ///////////////////////////////////////////
+
+
+
+
+    //wanna end
+
     
 
 }
