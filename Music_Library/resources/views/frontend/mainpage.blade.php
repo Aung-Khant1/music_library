@@ -421,9 +421,9 @@
             <div class="row">
 
 
+                <!-- ***** Weeks Top ***** -->
+                <div class="col-12 col-lg-4">
 
-               
-                <div class="col-12 col-lg-4 ">
                     <div class="new-hits-area mb-100">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
                             <p>See what’s new</p>
@@ -432,11 +432,13 @@
                         
                         @foreach($songs as $song)
                         <!-- Single Top Item -->
+
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp SongOfOneSinger" data-wow-delay="100ms">
 
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
                                     <img src="{{asset($song->singer->photo)}}" alt="">
+
                                 </div>
                                 <div class="content-">
                                     <h6>{{ $song->name }}</h6>
@@ -444,7 +446,9 @@
                                 </div>
                             </div>
                             <audio preload="auto" controls>
+
                                 <source src="{{asset($song->song_url)}}">
+
                             </audio>
                         </div>
                         @endforeach
@@ -522,7 +526,9 @@
                                 </div>
                             </div>
                             <audio preload="auto" controls>
+
                                 <source src="{{asset($song->song_url)}}">
+
                             </audio>
                         </div>
                         @endforeach
@@ -558,7 +564,7 @@
                 <div class="col-12">
                     <div class="section-heading white wow fadeInUp" data-wow-delay="100ms">
                         <p>See what’s new</p>
-                        <h2>Get In Touch</h2>
+                        <h2>What's Request</h2>
                     </div>
                 </div>
             </div>
@@ -566,35 +572,25 @@
             <div class="row">
                 <div class="col-12">
                     <!-- Contact Form Area -->
-                    <div class="contact-form-area">
-                        <form action="#" method="post">
+                    <form action="" method="POST" class="checkoutform">
+                        @csrf
+                        <div class="contact-form-area">
                             <div class="row">
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group wow fadeInUp" data-wow-delay="100ms">
-                                        <input type="text" class="form-control" id="name" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group wow fadeInUp" data-wow-delay="200ms">
-                                        <input type="email" class="form-control" id="email" placeholder="E-mail">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group wow fadeInUp" data-wow-delay="300ms">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    </div>
-                                </div>
                                 <div class="col-12">
                                     <div class="form-group wow fadeInUp" data-wow-delay="400ms">
-                                        <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                                        <textarea name="request_msg" class="form-control request_msg" id="message" placeholder="Enter your request here!" required></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 text-center wow fadeInUp" data-wow-delay="500ms">
+                                    @role('user')
                                     <button class="btn oneMusic-btn mt-30" type="submit">Send <i class="fa fa-angle-double-right"></i></button>
+                                    @else
+                                    <button class="btn oneMusic-btn mt-30">Please Login or Register first! <i class="fa fa-angle-double-right"></i></button>
+                                    @endrole
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -602,6 +598,7 @@
     <!-- ##### Contact Area End ##### -->
 
 @endsection
+
 
 @section('script')
 
@@ -688,4 +685,30 @@
 
 
 
+
+
+@section('hmhscript')
+    
+    <script>
+        $.ajaxSetup({
+            headers:{
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(document).ready(function(){
+            $('.checkoutform').submit(function(e){
+                let request_msg = $('.request_msg').val();
+                if(request_msg === ""){
+                    return true;
+                }else{
+                    $.post("{{ route('requestsong.store') }}", {request_msg:request_msg}, function(response){
+                        alert(response);
+                        location.href="/";
+                    })
+                }
+                e.preventDefault();
+            })
+        });
+    </script>
+@endsection
 

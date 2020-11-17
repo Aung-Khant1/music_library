@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Route;
   //Route::resource('item', 'ItemController'); // 7
 
 
-
 Route::get('/', 'FrontendController@home')->name('mainpage');
 Route::get('/songs', 'FrontendController@song')->name('songs');
 Route::post('/isongs', 'FrontendController@isongs')->name('isongs');
@@ -35,15 +34,21 @@ Route::post('/msongs', 'FrontendController@msongs')->name('msongs');
 Route::post('/fsongs', 'FrontendController@fsongs')->name('fsongs');
 Route::post('/asongs', 'FrontendController@asongs')->name('asongs');
 // Route::resource('showsongs', 'SongsController');
+
  
 
  Route::get('/', 'FrontendController@home')->name('mainpage');
  Route::get('songsbysinger/{id}', 'FrontendController@songsbysinger')->name('songsbysinger');
 
 
+Route::get('songsbysinger/{id}', 'FrontendController@songsbysinger')->name('songsbysinger');
+
+
 Route::post('filterSongOfSinger','FrontendController@filterSongOfSinger')->name('filterSongOfSinger');
   
+
 //wanna route end
+Route::resource('requestsong', 'RequestSongController');
 
 Auth::routes();
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Request_song;
 use Illuminate\Http\Request;
+use Auth;
 
 class RequestSongController extends Controller
 {
@@ -14,7 +15,8 @@ class RequestSongController extends Controller
      */
     public function index()
     {
-        //
+        $request_songs = Request_song::all();
+        return view('request_song.index', compact('request_songs'));
     }
 
     /**
@@ -35,7 +37,14 @@ class RequestSongController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request_date = date('Y-m-d');
+        $request_song = new Request_song;
+        $request_song->request_msg = $request->request_msg;
+        $request_song->request_date = $request_date;
+        $request_song->user_id = Auth::id();
+        $request_song->save();
+
+        return 'Request successful!';
     }
 
     /**

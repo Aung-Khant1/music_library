@@ -15,6 +15,13 @@ class CreateRequestSongsTable extends Migration
     {
         Schema::create('request_songs', function (Blueprint $table) {
             $table->id();
+            $table->date('request_date');
+            $table->text('request_msg');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }
