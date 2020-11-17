@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use App\Song;
 use App\Singer;
 
-
 class FrontendController extends Controller
 {
     public function home($value='')

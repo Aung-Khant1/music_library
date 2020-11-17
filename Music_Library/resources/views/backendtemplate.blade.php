@@ -103,7 +103,7 @@
 
         <li><a class="app-menu__item {{ Request::is('song*') ? 'active' : '' }}" href="{{route('song.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Song</span></a></li>
 
-        <li><a class="app-menu__item {{ Request::is('requestsong*') ? 'active' : '' }}" href="{{route('requestsong.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Request_songs</span></a></li>
+        <li><a class="app-menu__item {{ Request::is('request_song*') ? 'active' : '' }}" href="{{route('request_song.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Request_songs</span></a></li>
         
       </ul>
     </aside>
