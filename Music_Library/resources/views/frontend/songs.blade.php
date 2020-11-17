@@ -131,8 +131,7 @@
 
 
 
-     
-    
+     <a href="{{route('AllClassMusicOnePage',"Male" )}}">  Local</a>
 
 
 

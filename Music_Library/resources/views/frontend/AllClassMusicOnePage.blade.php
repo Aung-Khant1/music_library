@@ -132,7 +132,8 @@
 
 
      
-      <a href="{{route('AllClassMusicOnePage',Male )}}">  Local</a>
+      <a href="{{route('AllClassMusicOnePage',"Local" )}}">  Local</a>
+
 
 
 
@@ -157,30 +158,28 @@
                 @php 
                     $i = 1;
                 @endphp
-                @foreach($songs as $song)
+                @foreach($ClassSinger as $singer)
+                
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         
 
                         <div class="song-thumbnail">
-                            <img src="{{asset($ClassSong->singer->photo)}}" alt="" >
+                            <img src="{{asset($singer->photo)}}" alt="" >
                         </div>
                         
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p >{{$i}}. {{$ClassSong->name}} 
+                                <p >{{$i}}. {{$singer->name}} 
                                  <spam class="HIcon">  <i class="fas fa-heart fa-1x ml-3" style="color: blue"
 
-                                    id="{{$ClassSong->id}}"></i></spam>
+                                    id="{{$singer->id}}"></i></spam>
                                  </p>
                                  
                                 
                                 
                             </div>
-                            <audio preload="auto" controls>
-                                <source src="{{asset($ClassSong->song_url)}}">
-                            </audio>
-
+                            
                         </div>
                     </div>
                 </div>
