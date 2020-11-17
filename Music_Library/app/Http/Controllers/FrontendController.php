@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Song;
+use App\Singer;
 
 
 class FrontendController extends Controller
@@ -144,6 +146,34 @@ class FrontendController extends Controller
     	$songs = Song::with('singer')->get();
     	return $songs;
     }
+
+    //wanna mainpage change
+
+    public function SongsByOneSingerOnePage($id)
+    {
+        $Onesinger = Singer::find($id);
+        $Allsong=Song::all();
+        $Allsinger=Singer::all();
+        
+        return view('frontend.SongsByOneSingerOnePage',compact('Onesinger','Allsong','Allsinger'));
+    }
+
+
+////////////////////////////////////
+     public function AllClassMusicOnePage($type)
+    {
+        $ClassSong = Singer::where('type', $type);
+        $AllSinger =Singer::all();
+       
+        
+        return view('frontend.AllClassMusicOnePage',compact('ClassSong','AllSinger'));
+    }
+    ///////////////////////////////////////////
+
+
+
+
+    //wanna end
 
     
 

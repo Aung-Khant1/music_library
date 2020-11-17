@@ -47,6 +47,16 @@ Route::get('songsbysinger/{id}', 'FrontendController@songsbysinger')->name('song
 Route::post('filterSongOfSinger','FrontendController@filterSongOfSinger')->name('filterSongOfSinger');
   
 
+Route::get('SongsByOneSingerOnePage/{id}','FrontendController@SongsByOneSingerOnePage')->name('SongsByOneSingerOnePage');
+///////////////////////////////
+
+
+Route::get('AllClassMusicOnePage/{type}','FrontendController@AllClassMusicOnePage')->name('AllClassMusicOnePage');
+
+
+///////////////////////////////////
+
+
 //wanna route end
 Route::resource('requestsong', 'RequestSongController');
 

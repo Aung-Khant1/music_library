@@ -19,6 +19,8 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{{asset('frontend_asset/style.css')}}">
 
+    <link rel="stylesheet" type="text/css" href="{{asset('frontend_asset/fontawesome/css/all.min.css')}}">
+
 </head>
 
 <body>
@@ -62,6 +64,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="footer-nav">
                         <ul>
                             <li><a href="#">Home</a></li>
+
                             <li><a href="#">Songs</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
@@ -94,7 +97,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     @yield('hmhscript')
     <!-- end -->
     
-    @yield('script')
+   
 
 </body>
 
