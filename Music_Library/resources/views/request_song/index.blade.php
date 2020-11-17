@@ -14,41 +14,39 @@
       <div class="row">
         <div class="col-md-12">
           <div class="tile">
-            
-         	
 
-          <h2 class="d-inline-block">Singer List</h2>
-          <a href="{{route('singer.create')}}" class="btn btn-info float-right">Add New</a>
+          <h2 class="d-inline-block">Request Message</h2>
           <table class="table mt-3 table-bordered dataTable">
           		<thead>
           			<tr>
           				<td>No</td>
-          				<td>Request Message</td>
+          				<td>User Name</td>
           				<td>Request Date</td>
-          				<td>User</td>
-          				
+          				<td>Request Message</td>
+                  <td>Action</td>
           			</tr>
           		</thead>
           		<tbody>
-
-                @php $i=1; @endphp
+                @php
+                $i=1;
+                @endphp
                 @foreach($request_songs as $row)
-
           			<tr>
           				<td>{{$i++}}</td>
-          				<td>{{$row->request_msg}}</td>
-                  <td>{{$row->request_date}}</td> 	
-                  <td>{{$row->user->name}}</td>
+          				<td>{{$row->user->name}}</td>
+                  <td>{{$row->request_date}}</td>
+                  <td>{{$row->request_msg}}</td>
+          				<td>
+                    <form method="POST" action="{{route('request_song.destroy', $row->id)}}" class="d-inline-block" onsubmit="return confirm('Are you sure want to delete?')">
+                      @csrf
+                      @method('DELETE')
+                      <input type="submit" name="btnsubmit" value="Delete" class="btn btn-danger">
+                    </form>
+                  </td>
                 </tr>
-
                 @endforeach
-
           		</tbody>
-          		
           	</table>
-
-
-
           </div>
         </div>
       </div>
