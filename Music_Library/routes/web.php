@@ -58,10 +58,15 @@ Route::get('AllClassMusicOnePage2/{type}','FrontendController@AllClassMusicOnePa
 
 ///////////////////////////////////
 
+/////for user heart song
 
+ Route::resource('HeartSong', 'BookmarkController');
+///
 //wanna route end
 Route::resource('request_song', 'RequestSongController');
 Route::resource('comments', 'CommentController');
+
+Route::get('Heart','FrontendController@Heart')->name('Heart');
 
 Auth::routes();
 

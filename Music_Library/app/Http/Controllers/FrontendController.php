@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Song;
 use App\Singer;
 
+
 class FrontendController extends Controller
 {
     public function home($value='')
@@ -182,6 +183,12 @@ class FrontendController extends Controller
     {
         return view('frontend.comment');
     }
+
+    public function Heart($value='')
+    {
+        return view('frontend.Heart');
+    }
+
 
     
 

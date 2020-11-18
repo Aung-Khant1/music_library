@@ -30,21 +30,10 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="index.html">Home</a></li>
-                                    <li><a href="albums-store.html">Albums</a></li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="albums-store.html">Albums</a></li>
-                                            <li><a href="event.html">Events</a></li>
-                                            <li><a href="blog.html">News</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="elements.html">Elements</a></li>
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="#">Dropdown</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="event.html">Events</a></li>
-                                    <li><a href="blog.html">News</a></li>
+                                    <li><a href="albums-store.html">Songs</a></li>
+                                    
+                                        
+                                    
                                     <li><a href="contact.html">Contact</a></li>
                                 </ul>
 
@@ -54,6 +43,9 @@
                                     <div class="login-register-btn mr-50">
                                         <a href="login.html" id="loginBtn">Login / Register</a>
                                     </div>
+
+                                    <!-- Cart Button -->
+                                    
                                 </div>
                             </div>
                             <!-- Nav End -->
@@ -69,19 +61,11 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image:url({{asset('frontend_asset/img/bg-img/breadcumb3.jpg')}});">
         <div class="bradcumbContent">
-            <p>See what’s new</p>
-            <h2>Latest Songs</h2>
+            
+            <h2>Favourite Songs</h2>
         </div>
     </section>
-    <!-- ##### Breadcumb Area End ##### -->
-
-    <!-- ##### Album Catagory Area Start ##### -->
-    <!--delete space wanna-->
-    <!-- ##### Buy Now Area End ##### -->
-
-    <!-- ##### Add Area Start ##### -->
-    
-    <!-- ##### Add Area End ##### -->
+   
 
     <div class="container mb-5 filter_active">
         
@@ -95,55 +79,70 @@
         
     </div>
 
+
     <!-- ##### Song Area Start ##### -->
     <div class="one-music-songs-area mb-70">
         <div class="container">
-            <div class="row filter_songs">
+            <div class="row filter_songs " id="tbody">
 
                 <!-- Single Song Area -->
-                @php 
-                    $i = 1;
-                @endphp
-                @foreach($Singers as $Singer)
-                 @foreach($Singer->songs as $song)
-                 
                 
-                <div class="col-12">
-                    <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
-                        <div class="song-thumbnail">
-                            <img src="{{asset($song->singer->photo)}}" alt="" >
-                        </div>
-                        
+        <script src="{{asset('frontend_asset/js/jquery/jquery-2.2.4.min.js')}}"></script>
+        <link rel="stylesheet" type="text/css" href="{{asset('frontend_asset/fontawesome/css/all.min.css')}}">
+        <script type="text/javascript">
+        $(document).ready(function(){
 
-                        <div class="song-play-area">
-                            <div class="song-name">
-                                 <p >{{$i}}. {{$song->name}}
-                                  
+            showdata();
 
-                                    <i type="submit" class="HIcon fas fa-heart fa-1x ml-3" style="color: blue" 
-                                    id="{{$song->id}}"
+            function showdata()
+            {
+                var itemlist=localStorage.getItem("Heart_song");
+                var itemArray=JSON.parse(itemlist);
+                var html="";
+                var j=1;
 
-                                    data-song_name="{{$song->name}}" data-song_url="{{asset($song->song_url)}}" data-id="{{$song->id}}"
+                $.each(itemArray,function(i,v)
+                {
+                    html+=`
 
-                                    data-SingerImg="{{asset($song->singer->photo)}}"
-                                    ></i>
-                                     
-                                    
-                                 </p>
-                            </div>
+                    <div class="col-12">
+                        <p ><spam class="remove" data-id=${i} style="color:red;border: 1px solid red; padding: 5px; border-radius: 10px;">x</spam>&nbsp;${j++}. ${v.name}
+                        </p>
+                        <audio preload="auto" controls style="background-color:black;padding:7px;">
+                            <source src="${v.url}">
+                        </audio>
+                    </div>`
+                })
+                $("#tbody").html(html);
 
-                            <audio preload="auto" controls>
-                                <source src="{{asset($song->song_url)}}">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
+            }
 
-                @php
-                    $i++;
-                @endphp
-              @endforeach
-                @endforeach
+            $("#tbody").on("click",".remove",function()
+            {
+            
+                var r = confirm("Do you want to delete?");
+                if(r==true)
+                {
+                    var id=$(this).data("id");
+                    //console.log(id);
+                    var itemlist=localStorage.getItem("Heart_song");
+                    var ItemArray=JSON.parse(itemlist);
+                    ItemArray.splice(id,1);
+                    var itemstring=JSON.stringify(ItemArray);
+                    localStorage.setItem("Heart_song", itemstring);
+                    showdata();
+                   
+                }
+            
+            })
+
+
+        });
+
+        </script>
+
+                
+
             </div>
         </div>
     </div>
@@ -204,73 +203,6 @@
 
 
 @section('script')
-    <script type="text/javascript">
-    
-    $(document).ready(function() {
-        $('.filter_active > a').click(function(){
-            $('.filter_active > a').removeClass('active_filter');
-            $(this).addClass('active_filter');
-        });
-
-        
-    $(".HIcon").click(function(){
-        $(this).css({"color": "red"});
-        
-        var id=$(this).data('id');
-                var name=$(this).data('song_name');
-                var url=$(this).data('song_url');
-               
-
-                var item=
-                {
-                    id:id,
-                    name:name,
-                    url:url,
-                   
-                    
-                }
-               
-                   
-
-                    var Heartlist=localStorage.getItem("Heart_song");
-
-                    var HeartArray;
-                
-                    if(Heartlist==null)
-                    {
-                        HeartArray=[];
-                    }
-                    else
-                    {
-                        HeartArray=JSON.parse(Heartlist);
-                    }
-
-                    var have=true;
-                    $.each(HeartArray,function(i,v)
-                    {
-                        if(v.id==id)
-                        {
-                           
-                            have=false;
-                        }
-                    })
-
-                    if(have)
-                    {
-                        HeartArray.push(item);
-                    }
-
-                    var itemstring=JSON.stringify(HeartArray);
-                    localStorage.setItem("Heart_song",itemstring);
-
-
-
-        
-
-        });
-
-    });
-
-    </script>
+</script>
     
 @endsection

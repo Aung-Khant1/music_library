@@ -61,7 +61,7 @@
     <section class="breadcumb-area bg-img bg-overlay" style="background-image:url({{asset('frontend_asset/img/bg-img/breadcumb3.jpg')}});">
         <div class="bradcumbContent">
             <p>See what’s new</p>
-            <h2>Latest Albums</h2>
+            <h2>Latest Songs</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -71,17 +71,7 @@
     <!-- ##### Buy Now Area End ##### -->
 
     <!-- ##### Add Area Start ##### -->
-    <div class="add-area mb-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 mt-5">
-                    <div class="adds">
-                        <a href="#"><img src="{{asset('frontend_asset/img/bg-img/add3.gif')}}" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- ##### Add Area End ##### -->
 
     <div class="container mb-5 filter_active">
@@ -118,10 +108,18 @@
                         <div class="song-play-area">
                             <div class="song-name">
                                 <p >{{$i}}. {{$song->name}}
-                                       <i class="HIcon fas fa-heart fa-1x ml-3" style="color: blue"
+                                  
 
-                                    id="{{$song->id}}"></i>
-                                </p>
+                                    <i type="submit" class="HIcon fas fa-heart fa-1x ml-3" style="color: blue" 
+                                    id="{{$song->id}}"
+
+                                    data-song_name="{{$song->name}}" data-song_url="{{asset($song->song_url)}}" data-id="{{$song->id}}"
+
+                                    data-SingerImg="{{asset($song->singer->photo)}}"
+                                    ></i>
+                                     
+                                    
+                                 </p>
                             </div>
 
                             <audio preload="auto" controls>
@@ -210,8 +208,53 @@
         
     $(".HIcon").click(function(){
         $(this).css({"color": "red"});
-        let SongID =$(this).attr("id");
-        alert(SongID);
+        
+         var id=$(this).data('id');
+                var name=$(this).data('song_name');
+                var url=$(this).data('song_url');
+               
+
+                var item=
+                {
+                    id:id,
+                    name:name,
+                    url:url,
+                   
+                    
+                }
+               
+                   
+
+                    var Heartlist=localStorage.getItem("Heart_song");
+
+                    var HeartArray;
+                
+                    if(Heartlist==null)
+                    {
+                        HeartArray=[];
+                    }
+                    else
+                    {
+                        HeartArray=JSON.parse(Heartlist);
+                    }
+
+                    var have=true;
+                    $.each(HeartArray,function(i,v)
+                    {
+                        if(v.id==id)
+                        {
+                           
+                            have=false;
+                        }
+                    })
+
+                    if(have)
+                    {
+                        HeartArray.push(item);
+                    }
+
+                    var itemstring=JSON.stringify(HeartArray);
+                    localStorage.setItem("Heart_song",itemstring);
         });
 
     });
