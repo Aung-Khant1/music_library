@@ -265,9 +265,11 @@
                                                 
                                                 
                                             </div>
-                                            <audio preload="auto" controls>
-                                                <source src="${song.song_url}">
-                                            </audio>
+                                            
+                                                <audio preload="auto" controls>
+                                                    <source src="${song.song_url}">
+                                                </audio>
+                                            
 
                                         </div>
                                     </div>
