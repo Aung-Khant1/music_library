@@ -127,7 +127,11 @@
 
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p >{{$i}}. {{$song->name}}</p>
+                                <p >{{$i}}. {{$song->name}}
+                                       <i class="HIcon fas fa-heart fa-1x ml-3" style="color: blue"
+
+                                    id="{{$song->id}}"></i>
+                                </p>
                             </div>
 
                             <audio preload="auto" controls>
@@ -211,7 +215,7 @@
         });
 
         
-    $(".HIcon>i").click(function(){
+    $(".HIcon").click(function(){
         $(this).css({"color": "red"});
         let SongID =$(this).attr("id");
         alert(SongID);

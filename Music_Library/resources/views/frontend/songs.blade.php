@@ -30,37 +30,10 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="index.html">Home</a></li>
-                                    <li><a href="albums-store.html">Albums</a></li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="albums-store.html">Albums</a></li>
-                                            <li><a href="event.html">Events</a></li>
-                                            <li><a href="blog.html">News</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="elements.html">Elements</a></li>
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="#">Dropdown</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="event.html">Events</a></li>
-                                    <li><a href="blog.html">News</a></li>
+                                    <li><a href="albums-store.html">Songs</a></li>
+                                    
+                                        
+                                    
                                     <li><a href="contact.html">Contact</a></li>
                                 </ul>
 
@@ -72,9 +45,7 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <!-- Nav End -->
@@ -127,24 +98,6 @@
     </div>
 
 
-
-
-
-
-
-     
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- ##### Song Area Start ##### -->
     <div class="one-music-songs-area mb-70">
         <div class="container">
@@ -166,10 +119,10 @@
                         <div class="song-play-area">
                             <div class="song-name">
                                 <p >{{$i}}. {{$song->name}} 
-                                 <spam class="HIcon">  <i class="fas fa-heart fa-1x ml-3" style="color: blue"
-
-                                    id="{{$song->id}}"></i></spam>
+                                 <i class="HIcon fas fa-heart fa-1x ml-3" style="color: blue" 
+                                 id="{{$song->id}}"></i>
                                  </p>
+
                                  
                                 
                                 
@@ -249,22 +202,23 @@
 
 @section('script')
     <script type="text/javascript">
-    
-    $(document).ready(function() {
-        $('.filter_active > a').click(function(){
-            $('.filter_active > a').removeClass('active_filter');
-            $(this).addClass('active_filter');
-        });
+       $(document).ready(function()
+        {
+            $('.filter_active > a').click(function()
+            {
+                $('.filter_active > a').removeClass('active_filter');
+                $(this).addClass('active_filter');
+            });
 
         
-    $(".HIcon>i").click(function(){
-        $(this).css({"color": "red"});
-        let SongID =$(this).attr("id");
-        alert(SongID);
-        });
+            $(".HIcon").click(function()
+            {
+                $(this).css({"color": "red"});
+                let SongID =$(this).attr("id");
+                alert(SongID);
+            });
 
     });
-
     </script>
     
 @endsection

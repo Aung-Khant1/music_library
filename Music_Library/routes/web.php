@@ -43,6 +43,8 @@ Route::post('/asongs', 'FrontendController@asongs')->name('asongs');
 Route::post('filterSongOfSinger','FrontendController@filterSongOfSinger')->name('filterSongOfSinger');
   
 
+Route::get('contact','FrontendController@contact')->name('contact');
+
 Route::get('SongsByOneSingerOnePage/{id}','FrontendController@SongsByOneSingerOnePage')->name('SongsByOneSingerOnePage');
 ///////////////////////////////
 
@@ -59,6 +61,7 @@ Route::get('AllClassMusicOnePage2/{type}','FrontendController@AllClassMusicOnePa
 
 //wanna route end
 Route::resource('request_song', 'RequestSongController');
+Route::resource('comments', 'CommentController');
 
 Auth::routes();
 

@@ -95,7 +95,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <!-- han min htet -->
     @yield('hmhscript')
+
+
     <!-- end -->
+
+     @yield('script')
     
    
 
