@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Song;
 use App\Singer;
 
+
 class FrontendController extends Controller
 {
     public function home($value='')
@@ -171,6 +172,12 @@ class FrontendController extends Controller
         $Singers = Singer::where('type', $type)->get();        
         return view('frontend.AllClassMusicOnePage2',compact('Singers'));
     }
+
+     public function OneSingerSongs($id)
+    {
+        $Singers = Singer::where('id', $id)->get();        
+        return view('frontend.OneSingerSongs',compact('Singers'));
+    }
     ///////////////////////////////////////////
 
 
@@ -182,6 +189,14 @@ class FrontendController extends Controller
     {
         return view('frontend.comment');
     }
+
+
+    public function Heart($value='')
+    {
+        return view('frontend.Heart');
+    }
+
+
 
     public function search(Request $request)
     {
@@ -195,6 +210,7 @@ class FrontendController extends Controller
 
 
     }
+
 
     
 

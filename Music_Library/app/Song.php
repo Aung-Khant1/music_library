@@ -12,5 +12,12 @@ class Song extends Model
 	  {
 	      return $this->belongsTo('App\Singer');
 	  }
+
+///for bookmark
+	  public function users()
+  	 {
+      	return $this->belongsToMany('App\User');
+  	 }
+ ////
 }
 

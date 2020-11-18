@@ -124,6 +124,7 @@
     <!-- The javascript plugin to display page loading on top-->
     <script src="{{asset('backend_asset/js/plugins/pace.min.js')}}"></script>
     
+    
    
     <!-- Page specific javascripts-->
     <!-- Google analytics script-->

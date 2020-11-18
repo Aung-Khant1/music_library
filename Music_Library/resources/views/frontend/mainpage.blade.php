@@ -41,6 +41,7 @@
                                     <li><a href="{{route('songs')}}">Songs</a></li>
                                     
                                     <li><a href="{{route('contact')}}">Contact</a></li>
+                                    <li><a href="{{route('Heart')}}">Favourite</a></li>
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }}
@@ -171,8 +172,14 @@
                             <h2>New Hits</h2>
                         </div>
                         
-                        @foreach($songs as $song)
+                       
                         <!-- Single Top Item -->
+                           @php $j=1; @endphp
+                            @for($j;$j<8;$j++)
+                            @php  
+                                $song=$songs[$j];
+                            @endphp
+
 
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp SongOfOneSinger" data-wow-delay="100ms">
 
@@ -192,8 +199,8 @@
 
                             </audio>
                         </div>
-                        @endforeach
-                   
+                        
+                         @endfor
 
                     
 
@@ -217,7 +224,7 @@
 
 
                         @php $i=1; @endphp
-                            @for($i;$i<4;$i++)
+                            @for($i;$i<9;$i++)
                             @php  
                                 $singer=$singers[$i];
                             @endphp
@@ -225,10 +232,11 @@
                             <!-- Single Artist -->
                             <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
                                 <div class="thumbnail">
-                                    <img src="{{ $singer->photo }}" class="img-fluid " alt="{{$singer->id}}" style="height: 60px;" value="{{$singer->id}}" >
+                                    <a  href="{{route('OneSingerSongs',$singer->id)}}">
+                                    <img src="{{ $singer->photo }}" class="img-fluid " alt="{{$singer->id}}" style="height: 60px;" value="{{$singer->id}}" ></a>
                                 </div>
                                 <div class="content-">
-                                    <a href="{{route('SongsByOneSingerOnePage',$singer->id)}}">  {{ $singer->name }}{{$singer->id}}</a>
+                                    <a href="{{route('SongsByOneSingerOnePage',$singer->id)}}">  {{ $singer->name }}</a>
                                    
                                     
                                 </div>
@@ -252,7 +260,14 @@
                             <h2>New Hits</h2>
                         </div>
                         
-                        @foreach($songs as $song)
+                        
+                        @php $k=1; @endphp
+                            @for($k;$k<8;$k++)
+                            @php  
+                                $song=$songs[$k];
+                            @endphp
+
+                         
                         <!-- Single Top Item -->
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp SongOfOneSinger" data-wow-delay="100ms">
 
@@ -271,7 +286,8 @@
 
                             </audio>
                         </div>
-                        @endforeach
+                        
+                        @endfor
                    
 
                     
