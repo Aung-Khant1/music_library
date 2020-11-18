@@ -105,6 +105,8 @@
 
         <li><a class="app-menu__item {{ Request::is('request_song*') ? 'active' : '' }}" href="{{route('request_song.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Request_songs</span></a></li>
         
+        <li><a class="app-menu__item {{ Request::is('comments*') ? 'active' : '' }}" href="{{route('comments.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Comments</span></a></li>
+
       </ul>
     </aside>
 

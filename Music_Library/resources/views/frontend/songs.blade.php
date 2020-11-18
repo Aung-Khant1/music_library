@@ -2,6 +2,16 @@
 @section('content')
 
     <!-- ##### Header Area Start ##### -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
     <header class="header-area">
         <!-- Navbar Area -->
         <div class="oneMusic-main-menu">
@@ -11,7 +21,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="index.html" class="nav-brand">Music Library</a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -29,24 +39,31 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="albums-store.html">Songs</a></li>
+                                    <li style="margin-right: 100px; width: 400px;"><input type="search" name="" class="filter_search form-control mb-3" placeholder="Search" style="background-color: #212529; color: #73f957;"></li>   
+                                    <li><a href="{{route('mainpage')}}">Home</a></li>
+                                    <li><a href="{{route('songs')}}">Songs</a></li>
                                     
-                                        
-                                    
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="{{route('contact')}}">Contact</a></li>
+                                    <li class="nav-item dropdown">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            {{ Auth::user()->name }}
+                                        </a>
+
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();" style="color: black;">
+                                                {{ __('Logout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </li>
                                 </ul>
 
-                                <!-- Login/Register & Cart Button -->
-                                <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Login/Register -->
-                                    <div class="login-register-btn mr-50">
-                                        <a href="login.html" id="loginBtn">Login / Register</a>
-                                    </div>
-
-                                    <!-- Cart Button -->
-                                    
-                                </div>
+                                
                             </div>
                             <!-- Nav End -->
 
@@ -59,10 +76,12 @@
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Breadcumb Area Start ##### -->
-    <section class="breadcumb-area bg-img bg-overlay" style="background-image:url({{asset('frontend_asset/img/bg-img/breadcumb3.jpg')}});">
+    <section class="breadcumb-area bg-img bg-overlay mb-5" style="background-image:url({{asset('frontend_asset/img/bg-img/breadcumb3.jpg')}});">
         <div class="bradcumbContent">
             <p>See what’s new</p>
-            <h2>Latest Songs</h2>
+
+            <h2>Enjoy The Music</h2>
+
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -72,18 +91,32 @@
     <!-- ##### Buy Now Area End ##### -->
 
     <!-- ##### Add Area Start ##### -->
-    
+
+    {{-- <div class="add-area mb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mt-5">
+                    <div class="adds">
+                         <a href="#"><img src="{{asset('frontend_asset/img/bg-img/add3.gif')}}" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+
     <!-- ##### Add Area End ##### -->
 
     <div class="container mb-5 filter_active">
         
+
         <a  href="{{route('songs')}}" class="filter_btn_all my-3">All</a>
        
-        <a  href="{{route('AllClassMusicOnePage2',"Internation" )}}" class="filter_btn_inter my-3">International</a>
+        <a  href="{{route('AllClassMusicOnePage2',"International" )}}" class="filter_btn_inter my-3">International</a>
         <a  href="{{route('AllClassMusicOnePage2',"Local" )}}" class="filter_btn_local my-3">Local</a>
         <a  href="{{route('AllClassMusicOnePage2',"Kpop" )}}" class="filter_btn_kpop my-3">K Pop</a>
         <a  href="{{route('AllClassMusicOnePage',"Male" )}}" class="filter_btn_male my-3">Male</a>
         <a  href="{{route('AllClassMusicOnePage',"Female" )}}" class="filter_btn_female my-3">Female</a>
+
         
     </div>
 
@@ -203,10 +236,60 @@
     <script type="text/javascript">
        $(document).ready(function()
         {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            
             $('.filter_active > a').click(function()
             {
                 $('.filter_active > a').removeClass('active_filter');
                 $(this).addClass('active_filter');
+            });
+
+            $('.filter_search').keyup(function() {
+                var key = $(this).val();
+                // console.log(key);
+                $.post('{{route('search')}}', {key: key}, function(response) 
+                {
+                    // console.log(response);
+                    var html = "";
+                    var i = 1;
+                    for (song of response) {
+                        html+=`
+                                <div class="col-12">
+                                    <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
+                                        
+
+                                        <div class="song-thumbnail">
+                                            <img src="${song.singer.photo}" alt="" >
+                                        </div>
+                                        
+                                        <div class="song-play-area">
+                                            <div class="song-name">
+                                                <p >${i++}. ${song.name }
+                                                 <i class="HIcon fas fa-heart fa-1x ml-3" style="color: blue" 
+                                                 id="${song.id}"></i>
+                                                 </p>
+
+                                                 
+                                                
+                                                
+                                            </div>
+                                            <audio preload="auto" controls>
+                                                <source src="${song.song_url}">
+                                            </audio>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                `;
+                    }
+
+                    $('.filter_songs').html(html);
+                });
             });
 
         
@@ -265,6 +348,9 @@
                         
                 
             });
+            
+
+            
 
 
 

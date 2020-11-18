@@ -184,9 +184,25 @@ class FrontendController extends Controller
         return view('frontend.comment');
     }
 
+
     public function Heart($value='')
     {
         return view('frontend.Heart');
+    }
+
+
+
+    public function search(Request $request)
+    {
+        $keyword = $request->key;
+
+        $songs = Song::where('name', 'like', '%' . $keyword . '%')->with('singer')->get();
+
+        return $songs;
+            
+        
+
+
     }
 
 

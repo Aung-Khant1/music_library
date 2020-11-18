@@ -20,7 +20,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="index.html" class="nav-brand">Music Library</a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -38,22 +38,30 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="albums-store.html">Songs</a></li>
+                                    <li><a href="{{route('mainpage')}}">Home</a></li>
+                                    <li><a href="{{route('songs')}}">Songs</a></li>
                                     
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="{{route('contact')}}">Contact</a></li>
+                                    <li class="nav-item dropdown">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            {{ Auth::user()->name }}
+                                        </a>
+
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();" style="color: black;">
+                                                {{ __('Logout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </li>
                                 </ul>
 
-                                <!-- Login/Register & Cart Button -->
-                                <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Login/Register -->
-                                    <div class="login-register-btn mr-50">
-                                        <a href="login.html" id="loginBtn">Login / Register</a>
-                                    </div>
-
-                                    <!-- Cart Button -->
-                                    
-                                </div>
+                                
                             </div>
                             <!-- Nav End -->
 
@@ -64,7 +72,7 @@
         </div>
     </header>
 	<!-- ##### Breadcumb Area Start ##### -->
-    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({{asset('frontend_asset/img/bg-img/breadcumb.jpg')}});">
         <div class="bradcumbContent">
             <p>See what’s new</p>
             <h2>Contact</h2>
