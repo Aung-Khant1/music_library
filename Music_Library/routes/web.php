@@ -37,11 +37,7 @@ Route::post('/asongs', 'FrontendController@asongs')->name('asongs');
 
  
 
- Route::get('/', 'FrontendController@home')->name('mainpage');
- Route::get('songsbysinger/{id}', 'FrontendController@songsbysinger')->name('songsbysinger');
 
-
-Route::get('songsbysinger/{id}', 'FrontendController@songsbysinger')->name('songsbysinger');
 
 
 Route::post('filterSongOfSinger','FrontendController@filterSongOfSinger')->name('filterSongOfSinger');
@@ -52,6 +48,10 @@ Route::get('SongsByOneSingerOnePage/{id}','FrontendController@SongsByOneSingerOn
 
 
 Route::get('AllClassMusicOnePage/{type}','FrontendController@AllClassMusicOnePage')->name('AllClassMusicOnePage');
+
+Route::get('AllClassMusicOnePage2/{type}','FrontendController@AllClassMusicOnePage2')->name('AllClassMusicOnePage2');
+
+
 
 
 ///////////////////////////////////

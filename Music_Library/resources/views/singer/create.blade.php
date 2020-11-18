@@ -58,6 +58,7 @@
                         
                           <option value="Local"> Local </option>
                           <option value="Internation"> Internation</option>
+                          <option value="Kpop"> Kpop</option>
                        
                       </select>
                   </div>

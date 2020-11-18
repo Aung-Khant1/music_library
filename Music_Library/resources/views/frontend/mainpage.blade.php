@@ -297,7 +297,7 @@
                 if(request_msg === ""){
                     return true;
                 }else{
-                    $.post("{{ route('requestsong.store') }}", {request_msg:request_msg}, function(response){
+                    $.post("{{ route('request_song.store') }}", {request_msg:request_msg}, function(response){
                         alert(response);
                         location.href="/";
                     })

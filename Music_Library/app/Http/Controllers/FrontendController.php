@@ -161,13 +161,15 @@ class FrontendController extends Controller
 ////////////////////////////////////
      public function AllClassMusicOnePage($type)
     {
-        $ClassSinger = Singer::where('gender', $type)->get();
+        $Singers = Singer::where('gender', $type)->get();        
+        return view('frontend.AllClassMusicOnePage',compact('Singers'));
+    }
 
-      
-        $AllSinger =Singer::all();
-       
-        
-        return view('frontend.AllClassMusicOnePage',compact('ClassSinger','AllSinger'));
+
+      public function AllClassMusicOnePage2($type)
+    {
+        $Singers = Singer::where('type', $type)->get();        
+        return view('frontend.AllClassMusicOnePage2',compact('Singers'));
     }
     ///////////////////////////////////////////
 

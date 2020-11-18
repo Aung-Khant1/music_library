@@ -116,12 +116,13 @@
 
     <div class="container mb-5 filter_active">
         
-        <a id="all_songs" class="filter_btn_all my-3">All</a>
-        <a id="international_song" class="filter_btn_inter my-3">International</a>
-        <a id="local_song" class="filter_btn_local my-3">Local</a>
-        <a id="kpop_song" class="filter_btn_kpop my-3">K Pop</a>
-        <a id="male_song" class="filter_btn_male my-3">Male</a>
-        <a id="female_song" class="filter_btn_female my-3">Female</a>
+        <a  href="{{route('songs')}}" class="filter_btn_all my-3">All</a>
+       
+        <a  href="{{route('AllClassMusicOnePage2',"Internation" )}}" class="filter_btn_inter my-3">International</a>
+        <a  href="{{route('AllClassMusicOnePage2',"Local" )}}" class="filter_btn_local my-3">Local</a>
+        <a  href="{{route('AllClassMusicOnePage2',"Kpop" )}}" class="filter_btn_kpop my-3">K Pop</a>
+        <a  href="{{route('AllClassMusicOnePage',"Male" )}}" class="filter_btn_male my-3">Male</a>
+        <a  href="{{route('AllClassMusicOnePage',"Female" )}}" class="filter_btn_female my-3">Female</a>
         
     </div>
 
@@ -131,8 +132,7 @@
 
 
 
-     <a href="{{route('AllClassMusicOnePage',"Male" )}}">  Local</a>
-
+     
 
 
 
@@ -249,281 +249,19 @@
 
 @section('script')
     <script type="text/javascript">
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
+    
     $(document).ready(function() {
-        $('#international_song').click(function(){
-            // alert('ok is');
-            var songtype = 'International';
-            $.post('{{route('isongs')}}', {
-                songtype: songtype
-            }, function(response) {
-                console.log(response);
-                var html = "";
-                var i = 1;
-                for (let row of response) {
-                    for (let isong of row) {
-                  html+=`
-                        <div class="col-12">
-                            <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
-                                
-
-                                <div class="song-thumbnail">
-                                    <img src="${isong.singer.photo}" alt="" >
-                                </div>
-                                
-                                <div class="song-play-area">
-                                    <div class="song-name">
-                                        <p>${i++}. ${isong.name} </p>
-                                    </div>
-                                    <audio preload="auto" controls>
-                                        <source src="${isong.song_url}">
-                                    </audio>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-                    }
-                }
-                
-                $('.filter_songs').html(html);
-            });
-        })
-
-
-
-        $('#local_song').click(function(){
-            // alert('ok ls');
-            var songtype = 'Local';
-            $.post('{{route('lsongs')}}', {
-                songtype: songtype
-            }, function(response) {
-                console.log(response);
-                var html = "";
-                var i = 1;
-                for (let row of response) {
-                    for (let lsong of row) {
-                  html+=`
-                        <div class="col-12">
-                            <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
-                                
-
-                                <div class="song-thumbnail">
-                                    <img src="${lsong.singer.photo}" alt="" >
-                                </div>
-                                
-                                <div class="song-play-area">
-                                    <div class="song-name">
-                                        <p>${i++}. ${lsong.name} 
-                                         <spam class="HIcon">  <i class="fas fa-heart fa-1x ml-3" style="color: blue"
-
-                                    id="${lsong.id}"></i></spam>
-
-                                        </p>
-                                    </div>
-                                    <audio preload="auto" controls>
-                                        <source src="${lsong.song_url}">
-                                    </audio>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-                    }
-                }
-                
-                $('.filter_songs').html(html);
-            });
-        })
-
-        $('#kpop_song').click(function(){
-            // alert('ok ls');
-            var songtype = 'Kpop';
-            $.post('{{route('ksongs')}}', {
-                songtype: songtype
-            }, function(response) {
-                console.log(response);
-                var html = "";
-                var i = 1;
-                for (let row of response) {
-                    for (let lsong of row) {
-                  html+=`
-                        <div class="col-12">
-                            <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
-                                
-
-                                <div class="song-thumbnail">
-                                    <img src="${lsong.singer.photo}" alt="" >
-                                </div>
-                                
-                                <div class="song-play-area">
-                                    <div class="song-name">
-                                        <p>${i++}. ${lsong.name} </p>
-                                    </div>
-                                    <audio preload="auto" controls>
-                                        <source src="${lsong.song_url}">
-                                    </audio>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-                    }
-                }
-                
-                $('.filter_songs').html(html);
-            });
-        })
-
-        $('#male_song').click(function(){
-            // alert('ok ls');
-            var songtype = 'Male';
-            $.post('{{route('msongs')}}', {
-                songtype: songtype
-            }, function(response) {
-                console.log(response);
-                var html = "";
-                var i = 1;
-                for (let row of response) {
-                    for (let msong of row) {
-                  html+=`
-                        <div class="col-12">
-                            <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
-                                
-
-                                <div class="song-thumbnail">
-                                    <img src="${msong.singer.photo}" alt="" >
-                                </div>
-                                
-                                <div class="song-play-area">
-                                    <div class="song-name">
-                                        <p>${i++}. ${msong.name} </p>
-                                    </div>
-                                    <audio preload="auto" controls>
-                                        <source src="${msong.song_url}">
-                                    </audio>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-                    }
-                }
-                
-                $('.filter_songs').html(html);
-            });
-        })
-
-
-
-        $('#female_song').click(function(){
-            // alert('ok ls');
-            var songtype = 'Female';
-            $.post('{{route('fsongs')}}', {
-                songtype: songtype
-            }, function(response) {
-                console.log(response);
-                var html = "";
-                var i = 1;
-                for (let row of response) {
-                    for (let fsong of row) {
-                  html+=`
-                        <div class="col-12">
-                            <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
-                                
-
-                                <div class="song-thumbnail">
-                                    <img src="${fsong.singer.photo}" alt="" >
-                                </div>
-                                
-                                <div class="song-play-area">
-                                    <div class="song-name">
-                                        <p>${i++}. ${fsong.name} </p>
-                                    </div>
-                                    <audio preload="auto" controls>
-                                        <source src="${fsong.song_url}">
-                                    </audio>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-                    }
-                }
-                
-                $('.filter_songs').html(html);
-            });
-        })
-
-
-
-
-        $('#all_songs').click(function(){
-            // alert('ok ls');
-            var songtype = 'Local';
-            $.post('{{route('asongs')}}', {
-                songtype: songtype
-            }, function(response) {
-                console.log(response);
-                var html = "";
-                var i = 1;
-                for (let row of response) {
-                    
-                  html+=`
-                        <div class="col-12">
-                            <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
-                                
-
-                                <div class="song-thumbnail">
-                                    <img src="${row.singer.photo}" alt="" >
-                                </div>
-                                
-                                <div class="song-play-area">
-                                    <div class="song-name">
-                                        <p>${i++}. ${row.name} </p>
-                                    </div>
-                                    <audio preload="auto" controls>
-                                        <source src="${row.song_url}">
-                                    </audio>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-                    
-                }
-                
-                $('.filter_songs').html(html);
-            });
-        })
-
-
-
         $('.filter_active > a').click(function(){
             $('.filter_active > a').removeClass('active_filter');
             $(this).addClass('active_filter');
         });
 
-
-
-
         
-            $(".HIcon>i").click(   
-                    function(){
-                        
-                       
-                       
-                                   
-                                        $(this).css({"color": "red"});
-                                        let SongID =$(this).attr("id");
-                                       
-                                        alert(SongID);
-                                        
-                                        
-                                    
-                        
-
-            
-                            });
+    $(".HIcon>i").click(function(){
+        $(this).css({"color": "red"});
+        let SongID =$(this).attr("id");
+        alert(SongID);
+        });
 
     });
 

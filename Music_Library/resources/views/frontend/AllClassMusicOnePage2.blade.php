@@ -31,7 +31,18 @@
                                 <ul>
                                     <li><a href="index.html">Home</a></li>
                                     <li><a href="albums-store.html">Albums</a></li>
-                                    <li><a href="#">Pages</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="dropdown">
+                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="albums-store.html">Albums</a></li>
+                                            <li><a href="event.html">Events</a></li>
+                                            <li><a href="blog.html">News</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="elements.html">Elements</a></li>
+                                            <li><a href="login.html">Login</a></li>
+                                            <li><a href="#">Dropdown</a></li>
+                                        </ul>
+                                    </li>
                                     <li><a href="event.html">Events</a></li>
                                     <li><a href="blog.html">News</a></li>
                                     <li><a href="contact.html">Contact</a></li>
@@ -43,8 +54,6 @@
                                     <div class="login-register-btn mr-50">
                                         <a href="login.html" id="loginBtn">Login / Register</a>
                                     </div>
-
-                                    
                                 </div>
                             </div>
                             <!-- Nav End -->
@@ -86,7 +95,7 @@
 
     <div class="container mb-5 filter_active">
         
-       <a  href="{{route('songs')}}" class="filter_btn_all my-3">All</a>
+        <a  href="{{route('songs')}}" class="filter_btn_all my-3">All</a>
        
         <a  href="{{route('AllClassMusicOnePage2',"Internation" )}}" class="filter_btn_inter my-3">International</a>
         <a  href="{{route('AllClassMusicOnePage2',"Local" )}}" class="filter_btn_local my-3">Local</a>
@@ -95,7 +104,6 @@
         <a  href="{{route('AllClassMusicOnePage',"Female" )}}" class="filter_btn_female my-3">Female</a>
         
     </div>
-
 
     <!-- ##### Song Area Start ##### -->
     <div class="one-music-songs-area mb-70">
@@ -115,6 +123,8 @@
                         <div class="song-thumbnail">
                             <img src="{{asset($song->singer->photo)}}" alt="" >
                         </div>
+                        
+
                         <div class="song-play-area">
                             <div class="song-name">
                                 <p >{{$i}}. {{$song->name}}</p>
@@ -132,9 +142,6 @@
                 @endphp
               @endforeach
                 @endforeach
-                
-                 
-
             </div>
         </div>
     </div>

@@ -70,10 +70,16 @@
                         @if($singer->type == "Local")
                           <option value="Lcal" selected=""> Local </option>
                           <option value="Internation"> Internation</option>
-                        @else
+                          <option value="Kpop"> Kpop</option>
+                        @elseif($singer->type == "Internation")
                           <option value="Local" > Local </option>
                           <option value="Internation" selected=""> Internation</option>
-                          @endif
+                          <option value="Kpop"> Kpop</option>
+                        @else
+                          <option value="Local" > Local </option>
+                          <option value="Internation" > Internation</option>
+                          <option value="Kpop" selected=""> Kpop</option>
+                        @endif
                       </select>
                   </div>
 
