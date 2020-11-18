@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Route::middleware('role:admin')->group(function(){});
 //Route::get('/', function () {
     //return view('welcome');
 //});
@@ -33,15 +33,9 @@ Route::post('/ksongs', 'FrontendController@ksongs')->name('ksongs');
 Route::post('/msongs', 'FrontendController@msongs')->name('msongs');
 Route::post('/fsongs', 'FrontendController@fsongs')->name('fsongs');
 Route::post('/asongs', 'FrontendController@asongs')->name('asongs');
+Route::post('/search', 'FrontendController@search')->name('search');
 // Route::resource('showsongs', 'SongsController');
-
- 
-
-
-
-
 Route::post('filterSongOfSinger','FrontendController@filterSongOfSinger')->name('filterSongOfSinger');
-  
 
 Route::get('contact','FrontendController@contact')->name('contact');
 

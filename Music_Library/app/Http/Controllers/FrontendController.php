@@ -183,6 +183,19 @@ class FrontendController extends Controller
         return view('frontend.comment');
     }
 
+    public function search(Request $request)
+    {
+        $keyword = $request->key;
+
+        $songs = Song::where('name', 'like', '%' . $keyword . '%')->with('singer')->get();
+
+        return $songs;
+            
+        
+
+
+    }
+
     
 
 }

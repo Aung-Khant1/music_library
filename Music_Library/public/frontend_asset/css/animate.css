@@ -2745,7 +2745,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 .filter_btn_all{
-  width: 120px;
+  width: 140px;
   display: inline-block;
   border: 1px solid white;
   line-height: 43px;
@@ -2753,7 +2753,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   border-radius: 60px;
   color: #fff !important;
   background-color: #f8b751;
-  margin-left: 20px;
+  margin-left: 30px;
   cursor: pointer;
   outline: none;
 }
@@ -2766,7 +2766,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 .filter_btn_inter{
-  width: 120px;
+  width: 140px;
   display: inline-block;
   border: 1px solid white;
   line-height: 43px;
@@ -2774,13 +2774,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   border-radius: 60px;
   color: #fff !important;
   background-color: #3ff296;;
-  margin-left: 20px;
+  margin-left: 30px;
   cursor: pointer;
   outline: none;
 }
 
 .filter_btn_local{
-  width: 120px;
+  width: 140px;
   display: inline-block;
   border: 1px solid white;
   line-height: 43px;
@@ -2788,13 +2788,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   border-radius: 60px;
   color: #fff !important;
   background-color: #43f5ed;
-  margin-left: 20px;
+  margin-left: 30px;
   cursor: pointer;
   outline: none;
 }
 
 .filter_btn_kpop{
-  width: 120px;
+  width: 140px;
   display: inline-block;
   border: 1px solid white;
   line-height: 43px;
@@ -2802,13 +2802,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   border-radius: 60px;
   color: #fff !important;
   background-color: #ff6fa5;
-  margin-left: 20px;
+  margin-left: 30px;
   cursor: pointer;
   outline: none;
 }
 
 .filter_btn_male{
-  width: 120px;
+  width: 140px;
   display: inline-block;
   border: 1px solid white;
   line-height: 43px;
@@ -2816,13 +2816,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   border-radius: 60px;
   color: #fff !important;
   background-color: #f54343;
-  margin-left: 20px;
+  margin-left: 30px;
   cursor: pointer;
   outline: none;
 }
 
 .filter_btn_female{
-  width: 120px;
+  width: 140px;
   display: inline-block;
   border: 1px solid white;
   line-height: 43px;
@@ -2830,7 +2830,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   border-radius: 60px;
   color: #fff !important;
   background-color: #f5d143;
-  margin-left: 20px;
+  margin-left: 30px;
   cursor: pointer;
   outline: none;
 }
