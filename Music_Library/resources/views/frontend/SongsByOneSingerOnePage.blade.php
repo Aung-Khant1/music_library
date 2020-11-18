@@ -1,6 +1,68 @@
 @extends('frontendtemplate')
 @section('content')
 
+<!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="index.html" class="nav-brand">Music Library</a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="{{route('mainpage')}}">Home</a></li>
+                                    <li><a href="{{route('songs')}}">Songs</a></li>
+                                    
+                                    <li><a href="{{route('contact')}}">Contact</a></li>
+                                     <li><a href="{{route('Heart')}}">Favourite</a></li>
+                                    <li class="nav-item dropdown">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            {{ Auth::user()->name }}
+                                        </a>
+
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();" style="color: black;">
+                                                {{ __('Logout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                
+                            </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <!-- ##### Hero Area Start ##### -->
     <section class="hero-area">
@@ -75,9 +137,13 @@
                             <h2>New Hits</h2>
                         </div>
                         
-                        @foreach($Allsong as $song)
+                       
                         <!-- Single Top Item -->
-
+                        @php $j=1; @endphp
+                            @for($j;$j<8;$j++)
+                            @php  
+                                $song=$Allsong[$j];
+                            @endphp
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp SongOfOneSinger" data-wow-delay="100ms">
 
                             <div class="first-part d-flex align-items-center">
@@ -96,7 +162,8 @@
 
                             </audio>
                         </div>
-                        @endforeach
+                       
+                        @endfor
                    
 
                     
@@ -115,7 +182,7 @@
 
 
                         @php $i=1; @endphp
-                            @for($i;$i<4;$i++)
+                            @for($i;$i<9;$i++)
                             @php  
                                 $singer=$Allsinger[$i];
                             @endphp
@@ -123,7 +190,8 @@
                             <!-- Single Artist -->
                             <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
                                 <div class="thumbnail">
-                                    <img src="{{ $singer->photo }}" class="img-fluid " alt="{{$singer->id}}" style="height: 60px;" value="{{$singer->id}}" >
+                                    <a  href="{{route('OneSingerSongs',$singer->id)}}">
+                                    <img src="{{ $singer->photo }}" class="img-fluid " alt="{{$singer->id}}" style="height: 60px;" value="{{$singer->id}}" ></a>
                                 </div>
                                 <div class="content-">
                                     <a href="{{route('SongsByOneSingerOnePage',$singer->id)}}">  {{ $singer->name }}</a>

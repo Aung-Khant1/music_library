@@ -47,6 +47,11 @@ Route::get('AllClassMusicOnePage/{type}','FrontendController@AllClassMusicOnePag
 
 Route::get('AllClassMusicOnePage2/{type}','FrontendController@AllClassMusicOnePage2')->name('AllClassMusicOnePage2');
 
+Route::get('OneSingerSongs/{id}','FrontendController@OneSingerSongs')->name('OneSingerSongs');
+
+
+
+
 
 
 

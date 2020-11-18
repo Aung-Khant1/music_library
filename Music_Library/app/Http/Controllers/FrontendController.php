@@ -172,6 +172,12 @@ class FrontendController extends Controller
         $Singers = Singer::where('type', $type)->get();        
         return view('frontend.AllClassMusicOnePage2',compact('Singers'));
     }
+
+     public function OneSingerSongs($id)
+    {
+        $Singers = Singer::where('id', $id)->get();        
+        return view('frontend.OneSingerSongs',compact('Singers'));
+    }
     ///////////////////////////////////////////
 
 
