@@ -15,8 +15,10 @@ class FrontendController extends Controller
         $latest_one_song = Song::orderby('id', 'desc')
                             ->take(1)
                             ->get();
-        $songs = Song::all();
+        $songs = Song::limit(8)->get();
         $singers = Singer::all();
+        // dd($singers);
+        
         return view('frontend.mainpage', compact('latest_one_song', 'songs', 'singers'));
     }
     public function songsbysinger($id)
@@ -144,6 +146,7 @@ class FrontendController extends Controller
     public function asongs(Request $request)
     {
         $songs = Song::with('singer')->get();
+
         return $songs;
     }
 
@@ -151,11 +154,24 @@ class FrontendController extends Controller
 
     public function SongsByOneSingerOnePage($id)
     {
-        $Onesinger = Singer::find($id);
-        $Allsong=Song::all();
-        $Allsinger=Singer::all();
+        $Onesinger = Singer::where('id', $id)->get();
+       
+
+        $v = [];
+        foreach ($Onesinger as $key => $value) {
+            $a = Song::where('singer_id',$value->id)->with('singer')->get();
+            
+                array_push($v, $a);
+            
+        }
+        $latest_one_song = Song::orderby('id', 'desc')
+                            ->take(1)
+                            ->get();
+        // dd($v);
+        $songs=Song::all();
+        $singers=Singer::all();
         
-        return view('frontend.SongsByOneSingerOnePage',compact('Onesinger','Allsong','Allsinger'));
+        return view('frontend.SongsByOneSingerOnePage',compact('latest_one_song','v','songs','singers'));
     }
 
 
@@ -175,8 +191,17 @@ class FrontendController extends Controller
 
      public function OneSingerSongs($id)
     {
-        $Singers = Singer::where('id', $id)->get();        
-        return view('frontend.OneSingerSongs',compact('Singers'));
+        $singers = Singer::where('id', $id)->get();
+        // $songs = Song::where('singer_id',$singers->id)->get(); 
+        $v = [];
+        foreach ($singers as $key => $value) {
+            $a = Song::where('singer_id',$value->id)->with('singer')->get();
+            
+                array_push($v, $a);
+            
+        }
+        // dd($v);  
+        return view('frontend.OneSingerSongs',compact('v'));
     }
     ///////////////////////////////////////////
 

@@ -130,8 +130,8 @@
                 @php 
                     $i = 1;
                 @endphp
-                @foreach($Singers as $Singer)
-                 @foreach($Singer->songs as $song)
+                @foreach($v as $Singer)
+                 @foreach($Singer as $song)
                  
                 
                 <div class="col-12">

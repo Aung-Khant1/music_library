@@ -174,11 +174,7 @@
                         
                        
                         <!-- Single Top Item -->
-                           @php $j=1; @endphp
-                            @for($j;$j<8;$j++)
-                            @php  
-                                $song=$songs[$j];
-                            @endphp
+                        @foreach($songs as $song)
 
 
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp SongOfOneSinger" data-wow-delay="100ms">
@@ -200,7 +196,7 @@
                             </audio>
                         </div>
                         
-                         @endfor
+                         @endforeach
 
                     
 
@@ -223,11 +219,7 @@
                         </div>
 
 
-                        @php $i=1; @endphp
-                            @for($i;$i<9;$i++)
-                            @php  
-                                $singer=$singers[$i];
-                            @endphp
+                        @foreach($singers as $singer)
                     
                             <!-- Single Artist -->
                             <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
@@ -242,7 +234,7 @@
                                 </div>
                             </div>
 
-                            @endfor
+                            @endforeach
                       
                
                        
@@ -261,11 +253,7 @@
                         </div>
                         
                         
-                        @php $k=1; @endphp
-                            @for($k;$k<8;$k++)
-                            @php  
-                                $song=$songs[$k];
-                            @endphp
+                        @foreach($songs as $songss)
 
                          
                         <!-- Single Top Item -->
@@ -273,21 +261,21 @@
 
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="{{asset($song->singer->photo)}}" alt="">
+                                    <img src="{{asset($songss->singer->photo)}}" alt="">
                                 </div>
                                 <div class="content-">
-                                    <h6>{{ $song->name }}</h6>
-                                    <p>{{ $song->singer->name }}</p>
+                                    <h6>{{ $songss->name }}</h6>
+                                    <p>{{ $songss->singer->name }}</p>
                                 </div>
                             </div>
                             <audio preload="auto" controls>
 
-                                <source src="{{asset($song->song_url)}}">
+                                <source src="{{asset($songss->song_url)}}">
 
                             </audio>
                         </div>
                         
-                        @endfor
+                        @endforeach
                    
 
                     
@@ -392,4 +380,3 @@
         });
     </script>
 @endsection
-

@@ -1,7 +1,15 @@
 @extends('frontendtemplate')
 @section('content')
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
 
-<!-- ##### Header Area Start ##### -->
+    <!-- ##### Header Area Start ##### -->
     <header class="header-area">
         <!-- Navbar Area -->
         <div class="oneMusic-main-menu">
@@ -33,7 +41,7 @@
                                     <li><a href="{{route('songs')}}">Songs</a></li>
                                     
                                     <li><a href="{{route('contact')}}">Contact</a></li>
-                                     <li><a href="{{route('Heart')}}">Favourite</a></li>
+                                    <li><a href="{{route('Heart')}}">Favourite</a></li>
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }}
@@ -115,7 +123,38 @@
     <!-- ##### Buy Now Area End ##### -->
 
     <!-- ##### Featured Artist Area Start ##### -->
-    
+    <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed" style="background-image: url({{asset('frontend_asset/img/bg-img/bg-4.jpg')}});">
+        <div class="container">
+            @foreach($latest_one_song as $los)
+            <div class="row align-items-end">
+                <div class="col-12 col-md-5 col-lg-4">
+                    <div class="featured-artist-thumb">
+                        <img src="{{ $los->singer->photo}}" alt="">
+                    </div>
+                </div>
+                <div class="col-12 col-md-7 col-lg-8">
+                    <div class="featured-artist-content">
+                        <!-- Section Heading -->
+                        <div class="section-heading white text-left mb-30">
+                            <p>See what’s new</p>
+                            <h2>Buy What’s New</h2>
+                        </div>
+                        <p>Singer: {{ $los->singer->name }}</p>
+                        <p>Writer: {{ $los->writer_name }}</p>
+                        <div class="song-play-area">
+                            <div class="song-name">
+                                <p>01. {{ $los->name }}</p>
+                            </div>
+                            <audio preload="auto" controls>
+                                <source src="{{ $los->song_url }}">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </section>
     <!-- ##### Featured Artist Area End ##### -->
 
     <!-- ##### Miscellaneous Area Start ##### -->
@@ -124,12 +163,8 @@
             <div class="row">
 
 
-                
-
-
-                
-
-  <div class="col-12 col-lg-4">
+                <!-- ***** Weeks Top ***** -->
+                <div class="col-12 col-lg-4">
 
                     <div class="new-hits-area mb-100">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
@@ -139,11 +174,9 @@
                         
                        
                         <!-- Single Top Item -->
-                        @php $j=1; @endphp
-                            @for($j;$j<8;$j++)
-                            @php  
-                                $song=$Allsong[$j];
-                            @endphp
+                        @foreach($songs as $song)
+
+
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp SongOfOneSinger" data-wow-delay="100ms">
 
                             <div class="first-part d-flex align-items-center">
@@ -162,18 +195,23 @@
 
                             </audio>
                         </div>
-                       
-                        @endfor
-                   
+                        
+                         @endforeach
 
                     
 
 
                     </div>
                 </div>
+               
 
 
-                 <div class="col-12 col-lg-4">
+                
+
+
+
+                <!-- ***** Popular Artists ***** -->
+                <div class="col-12 col-lg-4">
                     <div class="popular-artists-area mb-100">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
                             <p>See what’s new</p>
@@ -181,11 +219,7 @@
                         </div>
 
 
-                        @php $i=1; @endphp
-                            @for($i;$i<9;$i++)
-                            @php  
-                                $singer=$Allsinger[$i];
-                            @endphp
+                        @foreach($singers as $singer)
                     
                             <!-- Single Artist -->
                             <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
@@ -200,18 +234,15 @@
                                 </div>
                             </div>
 
-                            @endfor
+                            @endforeach
                       
                
                        
 
                     </div>
                 </div>
-               
 
-              
-
-                <!-- ***** New Hits Songs///////////////////////////////// ***** -->
+                <!-- ***** New Hits Songs ***** -->
              
 
                 <div class="col-12 col-lg-4 ">
@@ -221,26 +252,30 @@
                             <h2>New Hits</h2>
                         </div>
                         
-                        @foreach($Onesinger->songs as $song)
+                        
+                        @foreach($v as $songss)
+                            @foreach($songss as $songsss)
+                         
                         <!-- Single Top Item -->
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp SongOfOneSinger" data-wow-delay="100ms">
 
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="{{asset($song->singer->photo)}}" alt="">
+                                    <img src="{{asset($songsss->singer->photo)}}" alt="">
                                 </div>
                                 <div class="content-">
-                                    <h6>{{ $song->name }}</h6>
-                                    <p>{{ $song->singer->name }}</p>
+                                    <h6>{{ $songsss->name }}</h6>
+                                    <p>{{ $songsss->singer->name }}</p>
                                 </div>
                             </div>
                             <audio preload="auto" controls>
 
-                                <source src="{{asset($song->song_url)}}">
+                                <source src="{{asset($songsss->song_url)}}">
 
                             </audio>
-                             
                         </div>
+                        
+                        @endforeach
                         @endforeach
                    
 
@@ -310,85 +345,10 @@
 @endsection
 
 
-@section('script')
-
-<script type="text/javascript">
-    
-    $(document).ready(function(){
-        $.ajaxSetup({
-                    headers: 
-                    { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-                 });
-
-        
-
-
-        $('.SongOfSinger').click(function(){
-             $(".songSH").hide();
-
-            let SingerID =$(this).attr("value");
-            //alert(SingerID);
-            $.post("{{route('filterSongOfSinger')}}",{sid:SingerID},function(response){
-                console.log(response);
-
-                var i=response.length;
-               
-
-               // var songs = [];
-               var html="";
-               html+=`
-                    <div class="new-hits-area mb-100">
-                        <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
-                            <p>See what’s new</p>
-                            <h2>New Hits</h2>
-                        </div>`;
-                for(let row of response)
-                {
-                    console.log(row.name);
-                      html+=
-                    ` <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp SongOfOneSinger" data-wow-delay="100ms">
-
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="frontend_asset/img/bg-img/wt1.jpg" alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6> ${row.name} </h6>
-                                   
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="${row.song_url}">
-                            </audio>
-                        </div>`
-                }
-                html+=`</div>`;
-
-                $('#songShow').html(html);
-
-            })
-
-        })
-
-
-       //$(document).ajaxComplete(function(){
-         // $(".SongOfSinger").load("demo_ajax_load.asp");
-   //<link rel="stylesheet" href="">
- // });
 
 
 
 
-//
-
-    })
-
-
-</script>
-
-
-
-@endsection
 
  <!-- Favicon -->
     
@@ -421,4 +381,3 @@
         });
     </script>
 @endsection
-

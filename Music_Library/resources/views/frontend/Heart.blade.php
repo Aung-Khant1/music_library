@@ -65,7 +65,7 @@
     </header>
 
     <!-- ##### Breadcumb Area Start ##### -->
-    <section class="breadcumb-area bg-img bg-overlay" style="background-image:url({{asset('frontend_asset/img/bg-img/breadcumb3.jpg')}});">
+    <section class="breadcumb-area bg-img bg-overlay mb-5" style="background-image:url({{asset('frontend_asset/img/bg-img/breadcumb3.jpg')}});">
         <div class="bradcumbContent">
             
             <h2>Favourite Songs</h2>
