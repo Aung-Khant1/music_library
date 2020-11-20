@@ -47,11 +47,7 @@
                                      <li><a href="{{route('Heart')}}">Favourite</a></li>
                                     
                                     <li class="nav-item dropdown">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                            {{ Auth::user()->name }}
-                                        </a>
-
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();" style="color: black;">
@@ -62,6 +58,12 @@
                                                 @csrf
                                             </form>
                                         </div>
+
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            {{ Auth::user()->name }}
+                                        </a>
+
+                                       
                                     </li>
                                 </ul>
 
@@ -121,6 +123,10 @@
         
     </div>
 
+   @foreach($Singers as $Singer)
+        <center><h1>{{$Singer->name}}</h1></center>
+   @endforeach
+   
     <!-- ##### Song Area Start ##### -->
     <div class="one-music-songs-area mb-70">
         <div class="container">
@@ -153,6 +159,8 @@
 
                                     data-SingerImg="{{asset($song->singer->photo)}}"
                                     ></i>
+
+                                    <i type="submit" class="far fa-thumbs-up BtnLike ml-3" id="{{$song->id}}"></i>
                                      
                                     
                                  </p>
@@ -342,6 +350,15 @@
         
 
         });
+
+    
+            $('.BtnLike').click(function(){
+                $(this).css({"color":"blue"});
+                var songb = $(this).attr('id');
+                $.post("{{route('song.count')}}", {songb:songb}, function(response){
+                    
+                })
+            })
 
     });
 

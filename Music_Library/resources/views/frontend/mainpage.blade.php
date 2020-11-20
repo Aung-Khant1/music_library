@@ -1,13 +1,6 @@
 @extends('frontendtemplate')
 @section('content')
-    <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="lds-ellipsis">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
+    
 
     <!-- ##### Header Area Start ##### -->
     <header class="header-area">
@@ -43,9 +36,6 @@
                                     <li><a href="{{route('contact')}}">Contact</a></li>
                                     <li><a href="{{route('Heart')}}">Favourite</a></li>
                                     <li class="nav-item dropdown">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                            {{ Auth::user()->name }}
-                                        </a>
 
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -58,6 +48,12 @@
                                                 @csrf
                                             </form>
                                         </div>
+
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            {{ Auth::user()->name }}
+                                        </a>
+
+                                        
                                     </li>
                                 </ul>
 
@@ -169,15 +165,15 @@
                     <div class="new-hits-area mb-100">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
                             <p>See what’s new</p>
-                            <h2>New Hits</h2>
+                            <h2>Popular Songs</h2>
                         </div>
                         
                        
                         <!-- Single Top Item -->
-                           @php $j=1; @endphp
-                            @for($j;$j<8;$j++)
+                           @php $j=0; @endphp
+                            @for($j;$j<7;$j++)
                             @php  
-                                $song=$songs[$j];
+                                $song=$songsDesc[$j];
                             @endphp
 
 
@@ -261,8 +257,8 @@
                         </div>
                         
                         
-                        @php $k=1; @endphp
-                            @for($k;$k<8;$k++)
+                        @php $k=0; @endphp
+                            @for($k;$k<7;$k++)
                             @php  
                                 $song=$songs[$k];
                             @endphp

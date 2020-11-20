@@ -53,7 +53,9 @@
 
                                 
 
-                                <button type="submit" class="btn oneMusic-btn mt-30"> {{ __('Register') }}</button>
+                                <button type="submit" class="btn oneMusic-btn mt-30"> {{ __('Login') }}</button>
+                                <p>Have an account? 
+                                    <a href="{{route('register')}}">Register</a></p>
                             </form>
                           
                         </div>
