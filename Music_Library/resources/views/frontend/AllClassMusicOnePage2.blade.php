@@ -47,7 +47,6 @@
                                      <li><a href="{{route('Heart')}}">Favourite</a></li>
                                     
                                     <li class="nav-item dropdown">
-                                        
 
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -61,9 +60,13 @@
                                             </form>
                                         </div>
 
+                                        
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }}
                                         </a>
+
+                                        
+
                                     </li>
                                 </ul>
 
@@ -115,7 +118,7 @@
 
         <a  href="{{route('songs')}}" class="filter_btn_all my-3">All</a>
        
-        <a  href="{{route('AllClassMusicOnePage2',"International" )}}" class="filter_btn_inter my-3">International</a>
+        <a  href="{{route('AllClassMusicOnePage2',"Internation" )}}" class="filter_btn_inter my-3">International</a>
         <a  href="{{route('AllClassMusicOnePage2',"Local" )}}" class="filter_btn_local my-3">Local</a>
         <a  href="{{route('AllClassMusicOnePage2',"Kpop" )}}" class="filter_btn_kpop my-3">K Pop</a>
         <a  href="{{route('AllClassMusicOnePage',"Male" )}}" class="filter_btn_male my-3">Male</a>
@@ -155,6 +158,10 @@
 
                                     data-SingerImg="{{asset($song->singer->photo)}}"
                                     ></i>
+
+
+                                     <i type="submit" class="far fa-thumbs-up BtnLike ml-3" id="{{$song->id}}"></i>
+
                                      
                                     
                                  </p>
@@ -182,9 +189,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="section-heading white">
+                    <div class="section-heading white wow fadeInUp" data-wow-delay="100ms">
                         <p>See what’s new</p>
-                        <h2>Get In Touch</h2>
+                        <h2>What's Request</h2>
                     </div>
                 </div>
             </div>
@@ -192,35 +199,25 @@
             <div class="row">
                 <div class="col-12">
                     <!-- Contact Form Area -->
-                    <div class="contact-form-area">
-                        <form action="#" method="post">
+                    <form action="" method="POST" class="checkoutform">
+                        @csrf
+                        <div class="contact-form-area">
                             <div class="row">
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="email" placeholder="E-mail">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    </div>
-                                </div>
                                 <div class="col-12">
-                                    <div class="form-group">
-                                        <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                                    <div class="form-group wow fadeInUp" data-wow-delay="400ms">
+                                        <textarea name="request_msg" class="form-control request_msg" id="message" placeholder="Enter your request here!" required></textarea>
                                     </div>
                                 </div>
-                                <div class="col-12 text-center">
+                                <div class="col-12 text-center wow fadeInUp" data-wow-delay="500ms">
+                                    @role('user')
                                     <button class="btn oneMusic-btn mt-30" type="submit">Send <i class="fa fa-angle-double-right"></i></button>
+                                    @else
+                                    <button class="btn oneMusic-btn mt-30">Please Login or Register first! <i class="fa fa-angle-double-right"></i></button>
+                                    @endrole
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -267,8 +264,7 @@
                                         <div class="song-play-area">
                                             <div class="song-name">
                                                 <p >${i++}. ${song.name }
-                                                 <i class="HIcon fas fa-heart fa-1x ml-3" style="color: blue" 
-                                                 id="${song.id}"></i>
+                                                
                                                  </p>
 
                                                  
@@ -344,6 +340,30 @@
         
 
         });
+
+
+            $('.checkoutform').submit(function(e){
+                let request_msg = $('.request_msg').val();
+                if(request_msg === ""){
+                    return true;
+                }else{
+                    $.post("{{ route('request_song.store') }}", {request_msg:request_msg}, function(response){
+                        alert(response);
+                        $('.request_msg').val()="";
+                    })
+                }
+                e.preventDefault();
+            })
+
+
+             $('.BtnLike').click(function(){
+                $(this).css({"color":"blue"});
+                var songb = $(this).attr('id');
+                $.post("{{route('song.count')}}", {songb:songb}, function(response){
+                    
+                })
+            })
+            
 
     });
 

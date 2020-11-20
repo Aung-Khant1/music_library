@@ -34,10 +34,11 @@
                                     
                                     <li><a href="{{route('contact')}}">Contact</a></li>
                                      <li><a href="{{route('Heart')}}">Favourite</a></li>
-                                    <li class="nav-item dropdown">
-                                        
 
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                    <li class="nav-item dropdown" >
+
+                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();" style="color: black;">
@@ -49,11 +50,18 @@
                                             </form>
                                         </div>
 
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }}
                                         </a>
-                                    </li>
+                                   
+
+
+                                       
+                                     </li>
+
                                 </ul>
+
 
                                 
                             </div>
@@ -66,11 +74,15 @@
         </div>
     </header>
 
+    <div style="background-color: CadetBlue">
+
     <!-- ##### Breadcumb Area Start ##### -->
-    <section class="breadcumb-area bg-img bg-overlay mb-5" style="background-image:url({{asset('frontend_asset/img/bg-img/breadcumb3.jpg')}});">
-        <div class="bradcumbContent">
+
+    <section class="breadcumb-area bg-img bg-overlay mb-5" style="background-image:url({{asset('frontend_asset/img/bg-img/breadcumb3.jpg')}});" >
+        <div class="bradcumbContent" style="background-color: CadetBlue;">
+
             
-            <h2>Favourite Songs</h2>
+            <h2 >Favourite Songs</h2>
         </div>
     </section>
    
@@ -89,9 +101,9 @@
 
 
     <!-- ##### Song Area Start ##### -->
-    <div class="one-music-songs-area mb-70">
+    <div class="one-music-songs-area mb-70" >
         <div class="container">
-            <div class="row filter_songs " id="tbody">
+            <div class="row filter_songs " id="tbody" >
 
                 <!-- Single Song Area -->
                 
@@ -114,9 +126,9 @@
                     html+=`
 
                     <div class="col-12">
-                        <p ><spam class="remove" data-id=${i} style="color:red;border: 1px solid red; padding: 5px; border-radius: 10px;">x</spam>&nbsp;${j++}. ${v.name}
+                        <p ><spam class="remove" data-id=${i} style="color:red;border: 1px solid red; padding: 5px; border-radius: 10px;">x</spam>&nbsp;<spam style="color:white">${j++}. ${v.name}</spam>
                         </p>
-                        <audio preload="auto" controls style="background-color:black;padding:7px;">
+                        <audio preload="auto" controls >
                             <source src="${v.url}">
                         </audio>
                     </div>`
@@ -156,14 +168,14 @@
     </div>
     <!-- ##### Song Area End ##### -->
 
-    <!-- ##### Contact Area Start ##### -->
+     <!-- ##### Contact Area Start ##### -->
     <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url({{asset('frontend_asset/img/bg-img/bg-2.jpg')}});">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="section-heading white">
+                    <div class="section-heading white wow fadeInUp" data-wow-delay="100ms">
                         <p>See what’s new</p>
-                        <h2>Get In Touch</h2>
+                        <h2>What's Request</h2>
                     </div>
                 </div>
             </div>
@@ -171,46 +183,62 @@
             <div class="row">
                 <div class="col-12">
                     <!-- Contact Form Area -->
-                    <div class="contact-form-area">
-                        <form action="#" method="post">
+                    <form action="" method="POST" class="checkoutform">
+                        @csrf
+                        <div class="contact-form-area">
                             <div class="row">
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="email" placeholder="E-mail">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    </div>
-                                </div>
                                 <div class="col-12">
-                                    <div class="form-group">
-                                        <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                                    <div class="form-group wow fadeInUp" data-wow-delay="400ms">
+                                        <textarea name="request_msg" class="form-control request_msg" id="message" placeholder="Enter your request here!" required></textarea>
                                     </div>
                                 </div>
-                                <div class="col-12 text-center">
+                                <div class="col-12 text-center wow fadeInUp" data-wow-delay="500ms">
+                                    @role('user')
                                     <button class="btn oneMusic-btn mt-30" type="submit">Send <i class="fa fa-angle-double-right"></i></button>
+                                    @else
+                                    <button class="btn oneMusic-btn mt-30">Please Login or Register first! <i class="fa fa-angle-double-right"></i></button>
+                                    @endrole
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
     <!-- ##### Contact Area End ##### -->
 
+</div>
+
     
 @endsection
 
 
 @section('script')
+  <script type="text/javascript">
+ $(document).ready(function()
+        {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+  $('.checkoutform').submit(function(e){
+                let request_msg = $('.request_msg').val();
+                if(request_msg === ""){
+                    return true;
+                }else{
+                    $.post("{{ route('request_song.store') }}", {request_msg:request_msg}, function(response){
+                        alert(response);
+                        $('.request_msg').val()="";
+                    })
+                }
+                e.preventDefault();
+            })
+            
+           });
+
 </script>
     
 @endsection

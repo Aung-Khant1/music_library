@@ -15,11 +15,15 @@ class FrontendController extends Controller
         $latest_one_song = Song::orderby('id', 'desc')
                             ->take(1)
                             ->get();
-        $songs = Song::limit(8)->get();
+
+        $songs = Song::all();
+
         $singers = Singer::all();
-        // dd($singers);
+
+         $songsDesc = Song::orderby('count','desc')->get();
         
-        return view('frontend.mainpage', compact('latest_one_song', 'songs', 'singers'));
+        return view('frontend.mainpage', compact('latest_one_song', 'songs', 'singers','songsDesc'));
+
     }
     public function songsbysinger($id)
     {

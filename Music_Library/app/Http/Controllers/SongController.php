@@ -157,4 +157,13 @@ class SongController extends Controller
         $song->delete();
         return redirect()->route('song.index');
     }
+
+
+        public function count(Request $request){
+        $songid = $request->songb;
+        $song = Song::where('id', $songid)->increment('count', 1);
+        return $song_count;
+    }
+
+
 }
