@@ -8,6 +8,10 @@ use Auth;
 
 class CommentController extends Controller
 {
+    public function __construct($value='')
+    {
+        $this->middleware('role:admin')->except('store');
+    }
     /**
      * Display a listing of the resource.
      *

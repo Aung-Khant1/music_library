@@ -118,7 +118,7 @@
 
         <a  href="{{route('songs')}}" class="filter_btn_all my-3">All</a>
        
-        <a  href="{{route('AllClassMusicOnePage2',"Internation" )}}" class="filter_btn_inter my-3">International</a>
+        <a  href="{{route('AllClassMusicOnePage2',"International" )}}" class="filter_btn_inter my-3">International</a>
         <a  href="{{route('AllClassMusicOnePage2',"Local" )}}" class="filter_btn_local my-3">Local</a>
         <a  href="{{route('AllClassMusicOnePage2',"Kpop" )}}" class="filter_btn_kpop my-3">K Pop</a>
         <a  href="{{route('AllClassMusicOnePage',"Male" )}}" class="filter_btn_male my-3">Male</a>

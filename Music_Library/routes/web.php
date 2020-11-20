@@ -59,28 +59,29 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function(){
 	Route::middleware('role:admin')->group(function(){
 		
-		 Route::resource('singer', 'SingerController'); // 7 (get, post, put, delete)
-         Route::resource('song', 'SongController'); // 7 
-         Route::resource('request_song', 'RequestSongController');
-         Route::resource('comments', 'CommentController');
+		Route::resource('singer', 'SingerController'); // 7 (get, post, put, delete)
+        Route::resource('song', 'SongController'); // 7 
+        
 		
 	});
 
 
-Route::get('/', 'FrontendController@home')->name('mainpage');
-Route::get('/songs', 'FrontendController@song')->name('songs');
-Route::post('/search', 'FrontendController@search')->name('search');
-// Route::resource('showsongs', 'SongsController');
-Route::post('filterSongOfSinger','FrontendController@filterSongOfSinger')->name('filterSongOfSinger');
-Route::get('contact','FrontendController@contact')->name('contact');
-Route::get('SongsByOneSingerOnePage/{id}','FrontendController@SongsByOneSingerOnePage')->name('SongsByOneSingerOnePage');
-///////////////////////////////
-Route::get('AllClassMusicOnePage/{type}','FrontendController@AllClassMusicOnePage')->name('AllClassMusicOnePage');
-Route::get('AllClassMusicOnePage2/{type}','FrontendController@AllClassMusicOnePage2')->name('AllClassMusicOnePage2');
-Route::get('OneSingerSongs/{id}','FrontendController@OneSingerSongs')->name('OneSingerSongs');
-Route::get('Heart','FrontendController@Heart')->name('Heart');
-Route::get('/home', 'HomeController@index')->name('home');
-Route::post('count', 'SongController@count')->name('song.count');
+	Route::get('/', 'FrontendController@home')->name('mainpage');
+	Route::get('/songs', 'FrontendController@song')->name('songs');
+	Route::post('/search', 'FrontendController@search')->name('search');
+	// Route::resource('showsongs', 'SongsController');
+	Route::post('filterSongOfSinger','FrontendController@filterSongOfSinger')->name('filterSongOfSinger');
+	Route::get('contact','FrontendController@contact')->name('contact');
+	Route::get('SongsByOneSingerOnePage/{id}','FrontendController@SongsByOneSingerOnePage')->name('SongsByOneSingerOnePage');
+	///////////////////////////////
+	Route::get('AllClassMusicOnePage/{type}','FrontendController@AllClassMusicOnePage')->name('AllClassMusicOnePage');
+	Route::get('AllClassMusicOnePage2/{type}','FrontendController@AllClassMusicOnePage2')->name('AllClassMusicOnePage2');
+	Route::get('OneSingerSongs/{id}','FrontendController@OneSingerSongs')->name('OneSingerSongs');
+	Route::get('Heart','FrontendController@Heart')->name('Heart');
+	Route::get('/home', 'HomeController@index')->name('home');
+	Route::post('count', 'SongController@count')->name('song.count');
+	Route::resource('request_song', 'RequestSongController');
+	Route::resource('comments', 'CommentController');
 
 
 });

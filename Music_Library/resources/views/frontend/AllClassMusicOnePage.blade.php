@@ -120,7 +120,7 @@
 
        <a  href="{{route('songs')}}" class="filter_btn_all my-3">All</a>
        
-        <a  href="{{route('AllClassMusicOnePage2',"Internation" )}}" class="filter_btn_inter my-3">International</a>
+        <a  href="{{route('AllClassMusicOnePage2',"International" )}}" class="filter_btn_inter my-3">International</a>
         <a  href="{{route('AllClassMusicOnePage2',"Local" )}}" class="filter_btn_local my-3">Local</a>
         <a  href="{{route('AllClassMusicOnePage2',"Kpop" )}}" class="filter_btn_kpop my-3">K Pop</a>
         <a  href="{{route('AllClassMusicOnePage',"Male" )}}" class="filter_btn_male my-3">Male</a>
@@ -152,7 +152,7 @@
                                 <p >{{$i}}. {{$song->name}}
                                   
 
-                                    <i type="submit" class="HIcon fas fa-heart fa-1x ml-3" style="color: blue" 
+                                    <i type="submit" class="HIcon fas fa-heart fa-1x ml-3" style="color: #cfcfcf" 
                                     id="{{$song->id}}"
 
                                     data-song_name="{{$song->name}}" data-song_url="{{asset($song->song_url)}}" data-id="{{$song->id}}"
@@ -356,7 +356,7 @@
             })
 
      $('.BtnLike').click(function(){
-                $(this).css({"color":"blue"});
+                $(this).css({"color":"#009fff"});
                 var songb = $(this).attr('id');
                 $.post("{{route('song.count')}}", {songb:songb}, function(response){
                     
