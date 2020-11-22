@@ -174,7 +174,7 @@
                        
                         <!-- Single Top Item -->
 
-                        @foreach($songs as $song)
+                        @foreach($songsDesc as $song)
 
                            {{-- @php $j=0; @endphp
                             @for($j;$j<7;$j++)
